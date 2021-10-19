@@ -135,8 +135,29 @@ Additions:
 - README Section 4 Technologies used
 - README Section 5 Testing
 
-### 6.3 Updated README Section 6 Devlopment life cycle
+### 6.4 Updated README Section 6 Devlopment life cycle
 
 Additions:
 
 - README Section 6 Devlopment life cycle
+
+### 6.5 Updated README Sections 7 to 8
+
+Additions:
+
+- README Section 7 Deployment
+- README Section 8 Credits
+
+## 7.0 Deployment
+
+### 7.1 Local deployment
+
+### 7.2 GitHub page deployment
+
+### 7.3 Heroku deployment
+
+## 8.0 Credits
+
+### 8.1 Content
+
+### 8.2 Code
