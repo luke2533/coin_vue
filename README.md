@@ -179,13 +179,19 @@ Additions:
 - index.html
 - base.html
 
-### 6.10
+### 6.10 Added bootstrap and jQuery
 
 Additions:
 
 - Added Bootstrap
 - Added jQuery
 - Base template structure
+
+### 6.11 Added basic nav-bar
+
+Additions:
+
+- Added nav bar
 
 ## 7.0 Deployment
 
