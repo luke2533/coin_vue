@@ -17,7 +17,7 @@
 <body>
 
     <header>
-        <div class="container-fluid">
+        <div class="containter-fluid">
             <div class="row nav-bar">
                 <div class="col-md-4">
                     <ul class="nav">
@@ -29,7 +29,7 @@
                     </ul>
                 </div>
                 <div class="col-md-8">
-                    <ul class="nav nav-bar">
+                    <ul class="nav nav-bar float-right">
                         <li class="nav-item"><a href="" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="" class="nav-link">My Portfolio</a></li>
                         <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li>
@@ -41,6 +41,35 @@
     </header>
 
     {% block content %}
+    {% endblock %}
+
+    <footer>
+
+        <div class="containter-fluid">
+            <div class="row footer justify-content-center">
+                <div class="col-md-3">
+                    <h2 class="footer-title">Social media</h2>
+                    <br>
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-square footer-icon"></i></a>
+                    <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube footer-icon"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter footer-icon"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram footer-icon"></i></a>
+                </div>
+
+                <div class="col-md-3">
+                    <h2 class="footer-title">Navigation</h2>
+                    <br>
+                    <a href=""><i class="fas fa-home footer-icon"></i></a>
+                    <a href=""><i class="fas fa-university footer-icon"></i></a>
+                    <a href=""><i class="fas fa-coins footer-icon"></i></a>
+                    <a href=""><i class="fas fa-user footer-icon"></i></a>
+                </div>
+            </div>
+        </div>    
+
+    </footer>
+
+    {% block footer %}
     {% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" 

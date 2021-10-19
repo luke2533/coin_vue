@@ -193,6 +193,12 @@ Additions:
 
 - Added nav bar
 
+### 6.12 Added basic footer
+
+Additions:
+
+- Added footer
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
