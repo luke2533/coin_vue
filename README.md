@@ -179,6 +179,13 @@ Additions:
 - index.html
 - base.html
 
+### 6.10
+
+Additions:
+
+- Added Bootstrap
+- Added jQuery
+- Base template structure
 
 ## 7.0 Deployment
 

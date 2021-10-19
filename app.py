@@ -20,10 +20,10 @@ mongo = PyMongo(app)
 @app.route("/")
 
 
-# @app.route("/get_tasks")
-# def get_tasks():
-#     users = mongo.db.users.find()
-#     return render_template("index.html", users=users)
+@app.route("/get_tasks")
+def get_tasks():
+    users = mongo.db.users.find()
+    return render_template("index.html", users=users)
 
 
 if __name__ == "__main__":
