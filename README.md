@@ -107,3 +107,36 @@ CoinVue’s target audience are crypto retail investors interested in live marke
 ### 4.8 MongoDB
 
 ## 5.0 Testing
+
+## 6.0 Devlopment life cycle
+
+### 6.1 Initial commit
+
+Additions:
+
+- Code Institute gitpod template
+- .gitignore file
+- app.py
+- env.py
+- Flask compatibility
+
+### 6.2 Updated README Section 1 UX
+
+Additions:
+
+- README Section 1 UX
+
+### 6.3 Updated README Sections 2 to 5
+
+Additions:
+
+- README Section 2 Design Choices
+- README Section 3 Features
+- README Section 4 Technologies used
+- README Section 5 Testing
+
+### 6.3 Updated README Section 6 Devlopment life cycle
+
+Additions:
+
+- README Section 6 Devlopment life cycle
