@@ -160,6 +160,26 @@ Additions:
 
 - Add Procfile
 
+### 6.8 Deploy to heroku
+
+Additions:
+
+- Deployed to heroku
+
+### 6.9 Add basic file structure
+
+Additions:
+
+- static file
+- css file
+- style.css
+- js file
+- script.js
+- templates file
+- index.html
+- base.html
+
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
