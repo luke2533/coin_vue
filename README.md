@@ -70,3 +70,40 @@ CoinVue’s target audience are crypto retail investors interested in live marke
 
 1.4.6 The user has forgotten or wants to change to a more secure password, users can click the forgotten password link below the login page to change their password through an email authentication link then enter their new password.
 
+## 2.0 Design choices
+
+### 2.1 Fonts
+
+### 2.2 Icons
+
+### 2.3 Colors
+
+### 2.4 Wireframes
+
+### 2.5 Mockups
+
+## 3.0 Features
+
+### 3.1 Exisiting features
+
+### 3.2 Features left to implement
+
+## 4.0 Technologies used
+
+### 4.1 HTML5
+
+### 4.2 CSS3
+
+### 4.3 Bootstrap 4.5
+
+### 4.4 JavaScript
+
+### 4.5 jQuery
+
+### 4.6 Python 3
+
+### 4.7 Flask
+
+### 4.8 MongoDB
+
+## 5.0 Testing
