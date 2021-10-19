@@ -118,7 +118,7 @@ Additions:
 - .gitignore file
 - app.py
 - env.py
-- Flask compatibility
+- Create Flask app
 
 ### 6.2 Updated README Section 1 UX
 
@@ -147,6 +147,18 @@ Additions:
 
 - README Section 7 Deployment
 - README Section 8 Credits
+
+### 6.6 Add requirments.txt
+
+Additions:
+
+- Add requirments.txt
+
+### 6.7 Add Procfile
+
+Additions:
+
+- Add Procfile
 
 ## 7.0 Deployment
 
