@@ -19,11 +19,18 @@ mongo = PyMongo(app)
 
 @app.route("/")
 
-
-@app.route("/get_tasks")
-def get_tasks():
+@app.route("/coinvue")
+def coinvue():
     users = mongo.db.users.find()
     return render_template("index.html", users=users)
+
+@app.route("/signup")
+def signup():
+    return render_template("signup.html")
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
 
 
 if __name__ == "__main__":

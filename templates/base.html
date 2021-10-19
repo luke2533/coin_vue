@@ -17,23 +17,24 @@
 <body>
 
     <header>
-        <div class="containter-fluid">
+        <div class="container-fluid">
             <div class="row nav-bar">
                 <div class="col-md-4">
                     <ul class="nav">
                         <li class="nav-item">
-                            <a href=""><img src="https://thumbs.dreamstime.com/b/blockchain-technology-icon-vector-block-chain-symbol-blockchain-technology-modern-icon-vector-block-chain-symbol-logo-element-106099068.jpg"
+                            <a href="{{ url_for('coinvue') }}">
+                                <img src="https://thumbs.dreamstime.com/b/blockchain-technology-icon-vector-block-chain-symbol-blockchain-technology-modern-icon-vector-block-chain-symbol-logo-element-106099068.jpg"
                                 alt="CoinVue logo" class="logo"></a>
                         </li>
-                        <li class="nav-item"><a href=""><h1 class="nav-title">CoinVue</h1></a></li>
+                        <li class="nav-item"><a href="{{ url_for('coinvue') }}"><h1 class="nav-title">CoinVue</h1></a></li>
                     </ul>
                 </div>
                 <div class="col-md-8">
                     <ul class="nav nav-bar float-right">
-                        <li class="nav-item"><a href="" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="{{ url_for('coinvue') }}" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="" class="nav-link">My Portfolio</a></li>
                         <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li>
-                        <li class="nav-item"><a href="" class="nav-link">Log in</a></li>
+                        <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Log in</a></li>
                     </ul>
                 </div>
             </div>
@@ -45,7 +46,7 @@
 
     <footer>
 
-        <div class="containter-fluid">
+        <div class="container-fluid">
             <div class="row footer justify-content-center">
                 <div class="col-md-3">
                     <h2 class="footer-title">Social media</h2>
@@ -59,10 +60,10 @@
                 <div class="col-md-3">
                     <h2 class="footer-title">Navigation</h2>
                     <br>
-                    <a href=""><i class="fas fa-home footer-icon"></i></a>
+                    <a href="{{ url_for('coinvue') }}"><i class="fas fa-home footer-icon"></i></a>
                     <a href=""><i class="fas fa-university footer-icon"></i></a>
                     <a href=""><i class="fas fa-coins footer-icon"></i></a>
-                    <a href=""><i class="fas fa-user footer-icon"></i></a>
+                    <a href="{{ url_for('login') }}"><i class="fas fa-user footer-icon"></i></a>
                 </div>
             </div>
         </div>    

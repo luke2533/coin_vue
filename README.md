@@ -199,6 +199,15 @@ Additions:
 
 - Added footer
 
+### 6.13 Added log in, sign up page and links to nav and footer
+
+Additions:
+
+- Added log in page
+- Added sign up page
+- Added links to nav-bar
+- Added links to footer
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
