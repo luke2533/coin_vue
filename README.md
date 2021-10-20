@@ -215,6 +215,12 @@ Additions:
 - Log in and sign up page css
 - Sign up page form
 
+### 6.15 Added CoinMarketCap API
+
+Additions:
+
+- Added CoinMarketCap API
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
