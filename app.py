@@ -26,7 +26,7 @@ def coinvue():
     users = mongo.db.users.find()
     return render_template("index.html", users=users)
 
-
+# Function for users to sign up
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
@@ -62,6 +62,7 @@ def signup():
     return render_template("signup.html")
 
 
+# Function for users to log in
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -88,12 +89,26 @@ def login():
     return render_template("login.html")
 
 
+# Function for signed in users
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     #Grabs session users username
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username)
+    
+    if session["user"]:
+        return render_template("profile.html", username=username)
+
+    return redirect(url_for("login"))
+
+
+# Function for users to sign out
+@app.route("/logout")
+def logout():
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect((url_for("login")))
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

@@ -32,9 +32,15 @@
                 <div class="col-md-8">
                     <ul class="nav nav-bar float-right">
                         <li class="nav-item"><a href="{{ url_for('coinvue') }}" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="" class="nav-link">My Portfolio</a></li>
                         <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li>
-                        <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Log in</a></li>
+                        {% if session.user %}
+                            <li class="nav-item"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li>
+                            <li class="nav-item"><a href="" class="nav-link">My Portfolio</a></li>
+                            <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Log out</a></li>
+                        [% else %]
+                            <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Log in</a></li>
+                            <li class="nav-item"><a href="{{ url_for('signup') }}" class="nav-link">Sign up</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

@@ -232,9 +232,18 @@ Additions:
 
 Additions:
 
-- Flash messages apear for users when signed in
+- Flash messages appear for users when signed in
 - Added portfolio.html
 - Added profile.html
+
+### 6.18 Nav-bar changes based on if user is signed in or not
+
+Additions:
+
+- Sign up button on nav bar
+- Sign out button on nav bar
+- Logged in users have access to profile, my portfolio and log out
+- Logged out users have access to log in and sign up on nav-bar
 
 ## 7.0 Deployment
 
