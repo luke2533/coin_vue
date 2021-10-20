@@ -42,6 +42,21 @@ body{
 
 /* Nav-bar */
 
+/* Log in and Sign up page */
+
+.user-box{
+    border: solid black 1px;
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+}
+
+.user{
+    margin: 5px;
+}
+
+/* Log in and Sign up page */
+
 /* Footer */
 
 .footer{

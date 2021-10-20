@@ -208,6 +208,13 @@ Additions:
 - Added links to nav-bar
 - Added links to footer
 
+### 6.14 Log in and sign up page css
+
+Additions:
+
+- Log in and sign up page css
+- Sign up page form
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
