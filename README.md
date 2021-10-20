@@ -228,6 +228,14 @@ Additions:
 - Added flash messages to sign up
 - Sign up page fully functional
 
+### 6.17 Log in functionality, portfolio and profile page
+
+Additions:
+
+- Flash messages apear for users when signed in
+- Added portfolio.html
+- Added profile.html
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

@@ -59,7 +59,15 @@ body{
     margin: 5px;
 }
 
-/* Log in and Sign up page */
+.profile{
+    border: black 3px solid;
+    background-color: #FFAC5E;
+    margin: 50px;
+    padding: 50px;
+    text-align: center;
+}
+
+/* Log in, Sign up and Profile page */
 
 /* Footer */
 
