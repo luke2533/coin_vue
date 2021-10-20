@@ -48,16 +48,14 @@ def signup():
 
         if email != check_email:
             flash("Please make sure the emails match")
-            return redirect(url_for("signup")
+            return redirect(url_for("signup"))
 
-        
         new_user = {
             "username": request.form.get("username").lower(),
             "email": request.form.get("email"),
             "password": generate_password_hash(request.form.get("password"))
         }
         mongo.db.users.insert_one(new_user)
-
 
         session["user"] = request.form.get("username").lower()
         flash("Register complete")

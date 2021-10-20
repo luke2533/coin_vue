@@ -221,6 +221,13 @@ Additions:
 
 - Added CoinMarketCap API
 
+### 6.16 Registration functional and flash messages added
+
+Additions:
+
+- Added flash messages to sign up
+- Sign up page fully functional
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
