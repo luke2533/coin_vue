@@ -245,6 +245,13 @@ Additions:
 - Logged in users have access to profile, my portfolio and log out
 - Logged out users have access to log in and sign up on nav-bar
 
+### 6.19 Basic portfolio page structure and crypto record modal
+
+Additions:
+
+- Basic portfolio page structure
+- Crypto record modal
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

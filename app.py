@@ -26,6 +26,12 @@ def coinvue():
     users = mongo.db.users.find()
     return render_template("index.html", users=users)
 
+
+@app.route("/portfolio")
+def portfolio():
+    return render_template("portfolio.html")
+
+
 # Function for users to sign up
 @app.route("/signup", methods=["GET", "POST"])
 def signup():

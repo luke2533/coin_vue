@@ -1,6 +1,128 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="div"></div>
+    <section>
+        <div class="containter-fluid">
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#portfolio-chart" aria-expanded="true" aria-controls="portfolio-chart">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <h2>{{ username }}'s Portfolio</h2>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <h3>$7318.09</h3>
+                                        </div>
+                                    </div>
+                                        
+                                </button>
+                                </h2>
+                            </div>
+                        
+                            <div id="portfolio-chart" class="collapse" aria-labelledby="My Portfolio" data-parent="#portfolio-chart">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h4>-$129.10 24h</h4>
+                                        </div>
+
+                                        <div class="col-4 text-right">
+                                            <button type="button">Edit Portfolio</button>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#record-crypto">
+                                                + Add New
+                                            </button>
+                                    
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="record-crypto" tabindex="-1" aria-labelledby="record" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="record">Add Transaction</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            
+                                                            <div class="row justify-content-center">
+                                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                                    <button type="button" class="btn btn-secondary">Buy</button>
+                                                                    <button type="button" class="btn btn-secondary">Sell</button>
+                                                                    <button type="button" class="btn btn-secondary">Transfer</button>
+                                                                    <button type="button" class="btn btn-secondary">Staking</button>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Just do buy and sell for now -->
+
+                                                            <div class="row justify-content-center">
+                                                                <div class="form-group">
+                                                                    <label for="exampleFormControlSelect1">Example select</label>
+                                                                    <select class="form-control" id="crypto-list">
+                                                                    <option>Bitcoin BTC</option>
+                                                                    <option>Etherum ETH</option>
+                                                                    <option>Binanace BNB</option>
+                                                                    <option>Cardano ADA</option>
+                                                                    <option>Tether USDT</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Change each option out for a single one that automatcically adds them -->
+
+                                                            <form action="">
+                                                                <div class="row justify-content-center">
+                                                                    <div class="col-12">
+                                                                        <label for="quantity">Quantity</label>
+                                                                        <input type="text" placeholder="$0.00" class="record" id="quantity" name="quantity" required>
+                                                                        <label for="per-coin">Price Per Coin</label>
+                                                                        <input type="text" placeholder="0.00" class="record" id="per-coin" name="per-coin" required>
+                                                                    </div>
+                                                                </div>
+                                                            <!-- User crypto record form -->
+
+                                                                <div class="row justify-content-center">                                                               
+                                                                        <div class="col-12">
+                                                                            <input type="date" class="record" id="date" name="date" placeholder="Date" required>
+                                                                            <input type="text" class="record" id="notes" name="notes" placeholder="Notes">
+                                                                        </div>
+                                                                </div>
+                                                            <!-- Users can add the date of purchase and add notes -->
+
+                                                                <div class="row justify-content-center">
+                                                                    <label for="total">Total Spent</label>
+                                                                    <input type="text" class="record" id="total" name="total" placeholder="$0.00" readonly>
+                                                                </div>
+                                                            </form>
+                                                        
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Add Transaction</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                                            </div>
+                                                                        </div>
+
+                                    <img height="500px" width="1400px" src="https://images.squarespace-cdn.com/content/v1/55b6a6dce4b089e11621d3ed/1585087896250-R3GZ6OFWYQRZUJRCJU3D/produce_monthly.png" alt="PLACEHOLDER FOR CHART">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <!-- THIS IS WHERE STEP 2 READ -->
+    </section>
 
 {% endblock %}
