@@ -130,11 +130,45 @@
 
     <section>
         <!-- THIS IS WHERE STEP 2 READ -->
-        <!-- {% for crypto in cryptos %}
-            {{ crypto.name }}
-        {% endfor %}  -->
-
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-8">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <!-- Mongo DB Name -->
+                                <th scope="col">Price</th>
+                                <!-- CoinMarketCap listing latest crypto current price -->
+                                <th scope="col">24h %</th>
+                                <!-- CoinMarketCap listing latest 24 hour % change -->
+                                <th scope="col">Holdings</th>
+                                <!-- Mongo DB Quantity + Quaintiy = Holdings -->
+                                <th scope="col">Value</th>
+                                <!-- CoinMarketCap price * Quantity (Holdings) -->
+                                <th scope="col">Profit / Loss</th>
+                                <!-- NOT displayed total + total = GrandTotal -->
+                                <!-- Value - GrandTotal == Profit/Loss -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for crypto in cryptos %}
+                                <tr>
+                                    <th scope="row">{{ crypto.name }}</th>
+                                    <td>Price</td>
+                                    <td>24h %</td>
+                                    <td>{{ crypto.name }}</td>
+                                    <td>{{ crypto.name }}</td>
+                                    <td>{{ crypto.name }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>            
+                </div>
+            </div>
+        </div>
         <!-- Will need to work out how to only show user spesfic records that share the same username -->
     </section>
+
 
 {% endblock %}

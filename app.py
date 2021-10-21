@@ -152,6 +152,19 @@ def add_record():
 
     return render_template("portfolio.html", username=username)
 
+
+# READ
+@app.route("/get_record")
+def get_record():
+    username = mongo.db.cryptos.find_one(
+        {"username": session["user"]})["username"]
+
+    return render_template(("portfolio.html"), username=username)
+    
+
+
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
     port=int(os.environ.get("PORT")),

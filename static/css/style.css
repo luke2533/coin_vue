@@ -73,6 +73,7 @@ body{
 
 .record{
     width: 140px;
+    border: solid 1px black;
 }
 
 /* My Portfolio */

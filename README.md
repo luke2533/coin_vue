@@ -265,6 +265,12 @@ Additions:
 - Crypto record POST's username
 - Crypto record POST's total cost
 
+### 6.22 Portfolio page table basic structure
+
+Additions: 
+
+- Portfolio grid table basic structure
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
