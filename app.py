@@ -29,7 +29,11 @@ def coinvue():
 
 @app.route("/portfolio")
 def portfolio():
-    return render_template("portfolio.html")
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    
+    if session["user"]:
+        return render_template("portfolio.html", username=username)
 
 
 # Function for users to sign up
@@ -126,19 +130,27 @@ def logout():
 @app.route("/add_record", methods=["GET", "POST"])
 def add_record():
     if request.method == "POST":
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+
+        quantity = request.form.get("quantity")
+        per_coin = request.form.get("per-coin")
+        total = float(quantity) * float(per_coin)
+
         record = {
+            "username": session["user"],
             "name": request.form.get("name"),
             "quantity": request.form.get("quantity"),
             "per-coin": request.form.get("per-coin"),
             "date": request.form.get("date"),
             "notes": request.form.get("notes"),
-            "total": request.form.get("total")
+            "total": total
         }
         mongo.db.cryptos.insert_one(record)
         flash("Crypto Successfuly Added")
         return redirect(url_for("portfolio"))
 
-    return render_template("portfolio.html")
+    return render_template("portfolio.html", username=username)
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

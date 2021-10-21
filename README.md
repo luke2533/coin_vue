@@ -258,6 +258,13 @@ Additions:
 
 - Crypto record form POST's to mongodb
 
+### 6.21 Crypto record POST's username and total cost to mongodb
+
+Additions:
+
+- Crypto record POST's username
+- Crypto record POST's total cost
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
