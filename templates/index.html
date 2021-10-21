@@ -1,11 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- (https://blog.tati.digital/2020/11/30/python-flask-web-application-tutorial-2020-display-coinmarketcap-api-data/) -->
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <h1>CoinVue</h1>
+                <h3>Displaying the latest Crypto prices</h3>
 
-    {% for user in users %}
-        {{ user.username }}<br>
-        {{ user.email }}<br>
-        {{ user.password }}<br>
-    {% endfor %} 
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                        <th scope="col">Cryto Name</th>
+                        <th scope="col">Symbol</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Price Change (24h)</th>
+                        <th scope="col">Market Cap</th>
+                        <th scope="col">Volume (24h)</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                        {% for obj in results %}
+                            <tr>
+                            <td>{{obj.name}}</td>
+                            <td>{{obj.symbol}}</td>
+                            <td>{{obj.quote.USD.price}}</td>
+                            <td>{{obj.quote.USD.percent_change_24h}}</td>
+                            <td>{{obj.quote.USD.market_cap}}</td>
+                            <td>{{obj.quote.USD.volume_24h}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        
     
 <!-- Example from mini project -->
 {% endblock %}

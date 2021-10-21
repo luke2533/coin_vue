@@ -4,28 +4,57 @@ import json
 
 # CoinMarketCap Crypto listing lastest tab for paramerters
 
-url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
-parameters = {
-    "start": "1",
-    "limit": "5",
-    "convert": "USD",
-    "sort": "name"
+# https://blog.tati.digital/2020/11/30/python-flask-web-application-tutorial-2020-display-coinmarketcap-api-data/
 
-}
 
-headers = {
-    "Accepts": "application/json",
-    "X-CMC_PRO_API_KEY": "8f0aba7f-9416-48b3-8cf9-e2b39fdc49f1",
-}
+class Crypto:
+    def get_top_5(self):
 
-session = Session()
-session.headers.update(headers)
+        url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
+        parameters = {
+            "start": "1",
+            "limit": "5",
+            "convert": "USD"
+        }
 
-try:
-    response = session.get(url, params=parameters)
-    data = json.loads(response.text)
-    print(data)
-except (ConnectionError, Timeout, TooManyRedirects) as e:
-    print(e)
+        headers = {
+            "Accepts": "application/json",
+            "X-CMC_PRO_API_KEY": "8f0aba7f-9416-48b3-8cf9-e2b39fdc49f1",
+        }
+
+        session = Session()
+        session.headers.update(headers)
+
+        try:
+            response = session.get(url, params=parameters)
+            data = json.loads(response.text)
+            return data["data"]
+        except (ConnectionError, Timeout, TooManyRedirects) as e:
+            print(e)
+
+
+
+    def get_top_50(self):
+        url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
+        parameters = {
+            "start": "1",
+            "limit": "50",
+            "convert": "USD"
+        }
+
+        headers = {
+            "Accepts": "application/json",
+            "X-CMC_PRO_API_KEY": "8f0aba7f-9416-48b3-8cf9-e2b39fdc49f1",
+        }
+
+        session = Session()
+        session.headers.update(headers)
+
+        try:
+            response = session.get(url, params=parameters)
+            data = json.loads(response.text)
+            return data["data"]
+        except (ConnectionError, Timeout, TooManyRedirects) as e:
+            print(e)
 
 # Taken from Coin Market Cap API documentation

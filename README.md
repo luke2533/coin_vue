@@ -271,6 +271,14 @@ Additions:
 
 - Portfolio grid table basic structure
 
+### 6.23 Home page crypto tracker updates when releaded
+
+Additions:
+
+- Home page Crypto price tracker
+- Tracker updates when user releads page
+- Home page basic structure
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

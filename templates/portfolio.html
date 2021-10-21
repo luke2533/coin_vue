@@ -152,14 +152,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for crypto in cryptos %}
+                            {% for portfolio in portfolios %}
                                 <tr>
-                                    <th scope="row">{{ crypto.name }}</th>
-                                    <td>Price</td>
-                                    <td>24h %</td>
-                                    <td>{{ crypto.name }}</td>
-                                    <td>{{ crypto.name }}</td>
-                                    <td>{{ crypto.name }}</td>
+                                    <th scope="row">{{ portfolio.name }}</th>
+                                    <td>{{ portfolio.price }}</td>
+                                    <td>{{ portfolio.price_change }}</td>
+                                    <td>{{ portfolio.holdings }}</td>
+                                    <td>{{ portfolio.value }}</td>
+                                    <td>{{ portfolio.profit_loss }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>

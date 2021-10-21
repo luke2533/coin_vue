@@ -5,11 +5,14 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from coinvue import Crypto
 if os.path.exists("env.py"):
     import env
 
 
 app = Flask(__name__)
+
+crypto = Crypto()
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
@@ -23,8 +26,12 @@ mongo = PyMongo(app)
 
 @app.route("/coinvue")
 def coinvue():
-    users = mongo.db.users.find()
-    return render_template("index.html", users=users)
+    results = crypto.get_top_50()
+
+    for result in results:
+        result["quote"]["USD"]["price"] = "$ " + "{:.4f}".format(result["quote"]["USD"]["price"])
+    # The {:.4f} is the number of decimal places
+    return render_template("index.html", **locals())
 
 
 @app.route("/portfolio")
@@ -34,6 +41,7 @@ def portfolio():
     
     if session["user"]:
         return render_template("portfolio.html", username=username)
+
 
 
 # Function for users to sign up
@@ -154,15 +162,39 @@ def add_record():
 
 
 # READ
-@app.route("/get_record")
-def get_record():
-    username = mongo.db.cryptos.find_one(
-        {"username": session["user"]})["username"]
+# @app.route("/get_record")
+# def get_record():
+#     username = mongo.db.cryptos.find_one(
+#         {"username": session["user"]})["username"]
 
-    return render_template(("portfolio.html"), username=username)
+#     #This is where you add the variables for each equation
+
+# # name grabs to coins name from the cryptos collection underneath the same username
+#     name = mongo.db.cryptos.find(
+#         {"name": "Bitcoin"})
+#         # To test will just use bitcoin for now
+        
+# # e
+
+
+#     portfolio = {
+#         "username": session["user"],
+#         "name": name,
+#         "price": price,
+#         "price_change": price_change,
+#         "holdings": holdings,
+#         "value": value,
+#         "grand_total": grand_total,
+#         "profit_loss": profit_loss
+#     }
+#     # This doesn't work "key": "value" using mongo.db.find just finds nothing 
+#     # because nothing is there at the moment
+#     mongo.db.portfolios.insert_one(portfolio)
+
+# # Need to figure out how to build record for portfolio and how to access and change it
+
+#     return render_template(("portfolio.html"), username=username)
     
-
-
 
 
 if __name__ == "__main__":
