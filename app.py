@@ -116,6 +116,30 @@ def logout():
     return redirect((url_for("login")))
 
 
+# @app.route("/portfolio")
+# def portfolio():
+#     return render_template("portfolio.html")
+
+# CRUD
+
+# CREATE
+@app.route("/add_record", methods=["GET", "POST"])
+def add_record():
+    if request.method == "POST":
+        record = {
+            "name": request.form.get("name"),
+            "quantity": request.form.get("quantity"),
+            "per-coin": request.form.get("per-coin"),
+            "date": request.form.get("date"),
+            "notes": request.form.get("notes"),
+            "total": request.form.get("total")
+        }
+        mongo.db.cryptos.insert_one(record)
+        flash("Crypto Successfuly Added")
+        return redirect(url_for("portfolio"))
+
+    return render_template("portfolio.html")
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
     port=int(os.environ.get("PORT")),

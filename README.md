@@ -252,6 +252,12 @@ Additions:
 - Basic portfolio page structure
 - Crypto record modal
 
+### 6.20 Crypto record form POST's to mongodb
+
+Additions:
+
+- Crypto record form POST's to mongodb
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

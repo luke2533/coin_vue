@@ -7,9 +7,12 @@ import json
 url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
 parameters = {
     "start": "1",
-    "limit": "10",
-    "convert": "USD"
+    "limit": "5",
+    "convert": "USD",
+    "sort": "name"
+
 }
+
 headers = {
     "Accepts": "application/json",
     "X-CMC_PRO_API_KEY": "8f0aba7f-9416-48b3-8cf9-e2b39fdc49f1",

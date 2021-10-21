@@ -62,27 +62,33 @@
                                                             </div>
                                                             <!-- Just do buy and sell for now -->
 
-                                                            <div class="row justify-content-center">
-                                                                <div class="form-group">
-                                                                    <label for="exampleFormControlSelect1">Example select</label>
-                                                                    <select class="form-control" id="crypto-list">
-                                                                    <option>Bitcoin BTC</option>
-                                                                    <option>Etherum ETH</option>
-                                                                    <option>Binanace BNB</option>
-                                                                    <option>Cardano ADA</option>
-                                                                    <option>Tether USDT</option>
-                                                                    </select>
+                                                            <form method="POST" action="{{ url_for('add_record') }}">
+                                                                <div class="row justify-content-center">
+                                                                    <div class="form-group">                                                               
+                                                                        <select class="form-control" id="name" name="name">
+                                                                            <!-- {,% for coin in coins %,} -->
+                                                                                <!-- <option>{{ coin,name }}</option> -->
+                                                                            <option>Bitcoin</option>
+                                                                            <option>Etherum</option>
+                                                                            <option>Cardano</option>
+                                                                            <option>Polkadot</option>
+                                                                            <option>XRP</option>
+                                                                                <!-- COIN is a PLACEHOLDER name -->
+                                                                            <!-- {,% endfor %,}  -->
+                                                                            <!-- Need to find way to get CoinMarketCap coin names here (first 50) may need to add list(mongo.etc) -->
+                                                                        </select>
+                                                                        
+                                                                    </div>
                                                                 </div>
-                                                            </div>
                                                             <!-- Change each option out for a single one that automatcically adds them -->
 
-                                                            <form action="">
+                                                            
                                                                 <div class="row justify-content-center">
                                                                     <div class="col-12">
                                                                         <label for="quantity">Quantity</label>
-                                                                        <input type="text" placeholder="$0.00" class="record" id="quantity" name="quantity" required>
+                                                                        <input type="text" placeholder="0.00" class="record" id="quantity" name="quantity" required>
                                                                         <label for="per-coin">Price Per Coin</label>
-                                                                        <input type="text" placeholder="0.00" class="record" id="per-coin" name="per-coin" required>
+                                                                        <input type="text" placeholder="$0.00" class="record" id="per-coin" name="per-coin" required>
                                                                     </div>
                                                                 </div>
                                                             <!-- User crypto record form -->
@@ -99,17 +105,18 @@
                                                                     <label for="total">Total Spent</label>
                                                                     <input type="text" class="record" id="total" name="total" placeholder="$0.00" readonly>
                                                                 </div>
-                                                            </form>
+                                                            
                                                         
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Add Transaction</button>
-                                                        </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">Add Transaction</button>
+                                                                </div>
+                                                            </form>
                                                     </div>
                                                 </div>
                                             </div>
-                                                                            </div>
-                                                                        </div>
+                                        </div>
+                                    </div>
 
                                     <img height="500px" width="1400px" src="https://images.squarespace-cdn.com/content/v1/55b6a6dce4b089e11621d3ed/1585087896250-R3GZ6OFWYQRZUJRCJU3D/produce_monthly.png" alt="PLACEHOLDER FOR CHART">
                                 </div>
@@ -123,6 +130,11 @@
 
     <section>
         <!-- THIS IS WHERE STEP 2 READ -->
+        <!-- {% for crypto in cryptos %}
+            {{ crypto.name }}
+        {% endfor %}  -->
+
+        <!-- Will need to work out how to only show user spesfic records that share the same username -->
     </section>
 
 {% endblock %}
