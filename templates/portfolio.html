@@ -2,6 +2,15 @@
 {% block content %}
 
     <section>
+        {% for record in records %}
+            {{ record.username }}<br>
+            {{ record.name }}<br>
+            {{ record.quantity }}<br>
+            {{ record.per-coin }}<br>
+            {{ record.date }}<br>
+            {{ record.notes }}<br>
+            {{ record.total }}<br>
+        {% endfor %} 
         <div class="containter-fluid">
             <div class="row justify-content-center">
                 <div class="col-8">
@@ -64,19 +73,14 @@
 
                                                             <form method="POST" action="{{ url_for('add_record') }}">
                                                                 <div class="row justify-content-center">
-                                                                    <div class="form-group">                                                               
-                                                                        <select class="form-control" id="name" name="name">
-                                                                            <!-- {,% for obj in results %,}                                                 
-                                                                                <option></option>                                                                 
-                                                                            {,% endfor %,}  -->
-                                                                            <option>Bitcoin</option>
-                                                                            <option>Etherum</option>
-                                                                            <option>Binance</option>
-                                                                            <option>Cardano</option>
-                                                                            <option>Polkadot</option>
+                                                                    <div class="form-group">      
+                                                                                                                                
+                                                                        <select class="form-control" id="coin_id" name="coin_id">
+                                                                        {% for obj in names %}                                                                
+                                                                            <option>{{ obj.name }}</option>                                                                 
                                                                             <!-- Need to find way to get CoinMarketCap coin names here (first 50) may need to add list(mongo.etc) -->
+                                                                        {% endfor %}
                                                                         </select>
-                                                                        
                                                                     </div>
                                                                 </div>
                                                             <!-- Change each option out for a single one that automatcically adds them -->
@@ -151,20 +155,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for portfolio in portfolios %}
-                                <!-- {,% for obj in prices %,} -->
+                            <!-- {.% for portfolio in portfolios %.}
+                                {.% for obj in prices %.}
                                     <tr>
-                                        <th scope="row">{{ portfolio.name }}</th>
-                                        <td>{{ obj.quote.USD.price }}</td>
-                                        <td>{{ obj.quote.USD.percent_change_24h }}</td>
-                                        <td>{{ portfolio.holdings }}</td>
-                                        <td>{{ portfolio.value }}</td>
-                                        <td>{{ portfolio.profit_loss }}</td>
+
                                     </tr>
-                                <!-- {,% endfor %,} -->
-                            {% endfor %}
+                                {,% endfor %,}
+                            {,% endfor %,} -->
+                            
                         </tbody>
-                      </table>            
+                    </table>       
                 </div>
             </div>
         </div>

@@ -294,6 +294,12 @@ Issues - (portfolio collection) Unable to find records with the same crypto curr
 
 Issues - (get_price) Unable to get the cryptos current price as well as way to get price for the correct crypto
 
+### 6.25 More Crypto options for users to pick from
+
+Additions:
+
+- Users can now pick from more cryptos as the options are tacken from CoinMarketCap dictionairy
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

@@ -41,9 +41,10 @@ def coinvue():
 def portfolio():
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    
+    names = crypto.get_name()
+
     if session["user"]:
-        return render_template("portfolio.html", username=username)
+        return render_template("portfolio.html", username=username, names=names)
 
 
 
@@ -131,10 +132,6 @@ def logout():
     return redirect((url_for("login")))
 
 
-# @app.route("/portfolio")
-# def portfolio():
-#     return render_template("portfolio.html")
-
 # CRUD
 
 # CREATE
@@ -149,23 +146,20 @@ def add_record():
         per_coin = request.form.get("per-coin")
         total = float(quantity) * float(per_coin)
 
-        # names = crypto.get_name()
-        # # Gets crypto name
-        # for name in names:
-        #     name["name"] = "$ " + "{:.4f}".format(name["name"])
+        names = crypto.get_name()
 
-        record = {
+        records = {
             "username": session["user"],
-            "name": request.form.get("name"),
+            "coin_id": request.form.get("coin_id"),
             "quantity": float(quantity),
             "per-coin": float(per_coin),
             "date": request.form.get("date"),
             "notes": request.form.get("notes"),
-            "total": total
+            "total": float(total)
         }
-        mongo.db.cryptos.insert_one(record)
+        mongo.db.cryptos.insert_one(records)
 
-        # # Holdings   quantity + quantity = holdings
+        # # # Holdings   quantity + quantity = holdings
         crypto_quantity = mongo.db.cryptos.find({}, {"quantity": 1})
         holdings = float(quantity) + float(crypto_quantity)
         # Issue need to grab them by name and filter the ones that match to add them up
@@ -176,23 +170,29 @@ def add_record():
         # Issue need to grab them by name and filter the ones that match to add them up
 
         # Value holdings * price = value
-        # prices = crypto.get_price()
+
+        prices = crypto.get_top_50()
+
+        for price in prices:
+            price["quote"]["USD"]["price"] = "$" + "{:.4f}".format(price["quote"]["USD"]["price"])
+            price["quote"]["USD"]["percent_change_24h"] = "{}%".format(price["quote"]["USD"]["percent_change_24h"])
         
         # Profit / Loss value - grand_total = profit_loss
 
-        portfolio = {
+        my_portfolio = {
             "username": session["user"],
-            "name": request.form.get("name"),
+            "coin_id": request.form.get("coin_id"),
             "holdings": float(holdings),
-            # "value": value,
+            "value": value,
             "grand_total": float(grand_total),
-            # "profit_loss": profit_loss
+            "profit_loss": profit_loss
         }
-        mongo.db.portfolios.insert_one(portfolio)
+        mongo.db.portfolios.insert_one(my_portfolio)
         flash("Crypto Successfuly Added")
         return redirect(url_for("portfolio"))
 
-    return render_template("portfolio.html", **locals(), username=username)
+    return render_template("portfolio.html",
+        username=username, **locals())
 
 
 # READ
