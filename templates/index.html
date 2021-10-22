@@ -13,7 +13,7 @@
                         <th scope="col">Cryto Name</th>
                         <th scope="col">Symbol</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Price Change (24h)</th>
+                        <th scope="col">Price Change % (24h)</th>
                         <th scope="col">Market Cap</th>
                         <th scope="col">Volume (24h)</th>
                         </tr>
@@ -23,12 +23,12 @@
                     <tbody>
                         {% for obj in results %}
                             <tr>
-                            <td>{{obj.name}}</td>
-                            <td>{{obj.symbol}}</td>
-                            <td>{{obj.quote.USD.price}}</td>
-                            <td>{{obj.quote.USD.percent_change_24h}}</td>
-                            <td>{{obj.quote.USD.market_cap}}</td>
-                            <td>{{obj.quote.USD.volume_24h}}</td>
+                            <td>{{ obj.name }}</td>
+                            <td>{{ obj.symbol }}</td>
+                            <td>{{ obj.quote.USD.price }}</td>
+                            <td>{{ obj.quote.USD.percent_change_24h }}</td>
+                            <td>{{ obj.quote.USD.market_cap }}</td>
+                            <td>{{ obj.quote.USD.volume_24h }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

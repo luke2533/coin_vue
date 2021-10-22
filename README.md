@@ -271,13 +271,28 @@ Additions:
 
 - Portfolio grid table basic structure
 
-### 6.23 Home page crypto tracker updates when releaded
+### 6.23 Home page crypto tracker updates when reloaded
 
 Additions:
 
 - Home page Crypto price tracker
-- Tracker updates when user releads page
+- Tracker updates when user reloadeds page
 - Home page basic structure
+
+### 6.24 Issues with get_price, get_name functions and updates to front page
+
+Additions:
+
+- coinvue.py get_price function
+- coinvue.py get_name function
+- Portfolios record progress
+- Update to home page
+
+Issues - (get_name) Unable to make list of names for crypto options for users to pick
+
+Issues - (portfolio collection) Unable to find records with the same crypto currency name to total up the users holdings / grand total, the value of there crypto and their profits / loses
+
+Issues - (get_price) Unable to get the cryptos current price as well as way to get price for the correct crypto
 
 ## 7.0 Deployment
 

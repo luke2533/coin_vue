@@ -29,7 +29,10 @@ def coinvue():
     results = crypto.get_top_50()
 
     for result in results:
-        result["quote"]["USD"]["price"] = "$ " + "{:.4f}".format(result["quote"]["USD"]["price"])
+        result["quote"]["USD"]["price"] = "$" + "{:.4f}".format(result["quote"]["USD"]["price"])
+        result["quote"]["USD"]["market_cap"] = "$" + "{:.2f}".format(result["quote"]["USD"]["market_cap"])
+        result["quote"]["USD"]["volume_24h"] = "$" + "{:.2f}".format(result["quote"]["USD"]["volume_24h"])
+        result["quote"]["USD"]["percent_change_24h"] = "{}%".format(result["quote"]["USD"]["percent_change_24h"])
     # The {:.4f} is the number of decimal places
     return render_template("index.html", **locals())
 
@@ -137,6 +140,7 @@ def logout():
 # CREATE
 @app.route("/add_record", methods=["GET", "POST"])
 def add_record():
+
     if request.method == "POST":
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
@@ -145,55 +149,60 @@ def add_record():
         per_coin = request.form.get("per-coin")
         total = float(quantity) * float(per_coin)
 
+        # names = crypto.get_name()
+        # # Gets crypto name
+        # for name in names:
+        #     name["name"] = "$ " + "{:.4f}".format(name["name"])
+
         record = {
             "username": session["user"],
             "name": request.form.get("name"),
-            "quantity": request.form.get("quantity"),
-            "per-coin": request.form.get("per-coin"),
+            "quantity": float(quantity),
+            "per-coin": float(per_coin),
             "date": request.form.get("date"),
             "notes": request.form.get("notes"),
             "total": total
         }
         mongo.db.cryptos.insert_one(record)
+
+        # # Holdings   quantity + quantity = holdings
+        crypto_quantity = mongo.db.cryptos.find({}, {"quantity": 1})
+        holdings = float(quantity) + float(crypto_quantity)
+        # Issue need to grab them by name and filter the ones that match to add them up
+
+        # GrandTotal total + total = grand_total
+        crypto_total = mongo.db.cryptos.find({}, {"total": 1})
+        grand_total = float(total) + float(crypto_total)
+        # Issue need to grab them by name and filter the ones that match to add them up
+
+        # Value holdings * price = value
+        # prices = crypto.get_price()
+        
+        # Profit / Loss value - grand_total = profit_loss
+
+        portfolio = {
+            "username": session["user"],
+            "name": request.form.get("name"),
+            "holdings": float(holdings),
+            # "value": value,
+            "grand_total": float(grand_total),
+            # "profit_loss": profit_loss
+        }
+        mongo.db.portfolios.insert_one(portfolio)
         flash("Crypto Successfuly Added")
         return redirect(url_for("portfolio"))
 
-    return render_template("portfolio.html", username=username)
+    return render_template("portfolio.html", **locals(), username=username)
 
 
 # READ
-# @app.route("/get_record")
-# def get_record():
-#     username = mongo.db.cryptos.find_one(
-#         {"username": session["user"]})["username"]
-
-#     #This is where you add the variables for each equation
-
-# # name grabs to coins name from the cryptos collection underneath the same username
-#     name = mongo.db.cryptos.find(
-#         {"name": "Bitcoin"})
-#         # To test will just use bitcoin for now
-        
-# # e
+@app.route("/get_record")
+def get_record():
+    username = mongo.db.cryptos.find_one(
+        {"username": session["user"]})["username"]
 
 
-#     portfolio = {
-#         "username": session["user"],
-#         "name": name,
-#         "price": price,
-#         "price_change": price_change,
-#         "holdings": holdings,
-#         "value": value,
-#         "grand_total": grand_total,
-#         "profit_loss": profit_loss
-#     }
-#     # This doesn't work "key": "value" using mongo.db.find just finds nothing 
-#     # because nothing is there at the moment
-#     mongo.db.portfolios.insert_one(portfolio)
-
-# # Need to figure out how to build record for portfolio and how to access and change it
-
-#     return render_template(("portfolio.html"), username=username)
+    return render_template(("portfolio.html"), username=username)
     
 
 

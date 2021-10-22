@@ -66,15 +66,14 @@
                                                                 <div class="row justify-content-center">
                                                                     <div class="form-group">                                                               
                                                                         <select class="form-control" id="name" name="name">
-                                                                            <!-- {,% for coin in coins %,} -->
-                                                                                <!-- <option>{{ coin,name }}</option> -->
+                                                                            <!-- {,% for obj in results %,}                                                 
+                                                                                <option></option>                                                                 
+                                                                            {,% endfor %,}  -->
                                                                             <option>Bitcoin</option>
                                                                             <option>Etherum</option>
+                                                                            <option>Binance</option>
                                                                             <option>Cardano</option>
                                                                             <option>Polkadot</option>
-                                                                            <option>XRP</option>
-                                                                                <!-- COIN is a PLACEHOLDER name -->
-                                                                            <!-- {,% endfor %,}  -->
                                                                             <!-- Need to find way to get CoinMarketCap coin names here (first 50) may need to add list(mongo.etc) -->
                                                                         </select>
                                                                         
@@ -153,14 +152,16 @@
                         </thead>
                         <tbody>
                             {% for portfolio in portfolios %}
-                                <tr>
-                                    <th scope="row">{{ portfolio.name }}</th>
-                                    <td>{{ portfolio.price }}</td>
-                                    <td>{{ portfolio.price_change }}</td>
-                                    <td>{{ portfolio.holdings }}</td>
-                                    <td>{{ portfolio.value }}</td>
-                                    <td>{{ portfolio.profit_loss }}</td>
-                                </tr>
+                                <!-- {,% for obj in prices %,} -->
+                                    <tr>
+                                        <th scope="row">{{ portfolio.name }}</th>
+                                        <td>{{ obj.quote.USD.price }}</td>
+                                        <td>{{ obj.quote.USD.percent_change_24h }}</td>
+                                        <td>{{ portfolio.holdings }}</td>
+                                        <td>{{ portfolio.value }}</td>
+                                        <td>{{ portfolio.profit_loss }}</td>
+                                    </tr>
+                                <!-- {,% endfor %,} -->
                             {% endfor %}
                         </tbody>
                       </table>            
