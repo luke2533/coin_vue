@@ -65,6 +65,7 @@
                                                                 <div class="btn-group" role="group" aria-label="Basic example">
                                                                     <button type="button" class="btn btn-secondary">Buy</button>
                                                                     <button type="button" class="btn btn-secondary">Sell</button>
+                                                                    <button type="button" class="btn btn-secondary">Edit</button>
                                                                     <button type="button" class="btn btn-secondary">Transfer</button>
                                                                     <button type="button" class="btn btn-secondary">Staking</button>
                                                                 </div>
@@ -78,7 +79,6 @@
                                                                         <select class="form-control" id="coin_id" name="coin_id">
                                                                         {% for obj in names %}                                                                
                                                                             <option>{{ obj.name }}</option>                                                                 
-                                                                            <!-- Need to find way to get CoinMarketCap coin names here (first 50) may need to add list(mongo.etc) -->
                                                                         {% endfor %}
                                                                         </select>
                                                                     </div>
@@ -155,13 +155,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- {.% for portfolio in portfolios %.}
-                                {.% for obj in prices %.}
+                            <!-- {,% for portfolio in my_portfolios %,} -->
+                                {% for obj in prices %}
                                     <tr>
-
+                                    <td></td>
+                                    <td>{{ obj.quote.USD.price }}</td>
+                                    <td>{{ obj.quote.USD.percent_change_24h }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     </tr>
-                                {,% endfor %,}
-                            {,% endfor %,} -->
+                                {% endfor %}
+                            <!-- {,% endfor %,} -->
                             
                         </tbody>
                     </table>       

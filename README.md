@@ -288,17 +288,27 @@ Additions:
 - Portfolios record progress
 - Update to home page
 
-Issues - (get_name) Unable to make list of names for crypto options for users to pick
+Issues #1 - (get_name) Unable to make list of names for crypto options for users to pick
 
-Issues - (portfolio collection) Unable to find records with the same crypto currency name to total up the users holdings / grand total, the value of there crypto and their profits / loses
+Issues #2 - (portfolio collection) Unable to find records with the same crypto currency name to total up the users holdings / grand total, the value of there crypto and their profits / loses
 
-Issues - (get_price) Unable to get the cryptos current price as well as way to get price for the correct crypto
+Issues #3 - (get_price) Unable to get the cryptos current price as well as way to get price for the correct crypto
 
 ### 6.25 More Crypto options for users to pick from
 
 Additions:
 
 - Users can now pick from more cryptos as the options are tacken from CoinMarketCap dictionairy
+- Issue #1 resolved was calling from add_record rather then portfolio
+
+Issue RESOLVED #1 - (get_name) Unable to make list of names for crypto options for users to pick
+
+### 6.26 Changes to my_portfolio functionality 
+
+Additions:
+
+- Updates to app.py
+- my_portfolio collection
 
 ## 7.0 Deployment
 

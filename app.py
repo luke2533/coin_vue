@@ -23,7 +23,6 @@ mongo = PyMongo(app)
 
 @app.route("/")
 
-
 @app.route("/coinvue")
 def coinvue():
     results = crypto.get_top_50()
@@ -43,8 +42,14 @@ def portfolio():
         {"username": session["user"]})["username"]
     names = crypto.get_name()
 
+    prices = crypto.get_price()
+
+    for price in prices:
+        price["quote"]["USD"]["price"] = "$" + "{:.4f}".format(price["quote"]["USD"]["price"])
+        price["quote"]["USD"]["percent_change_24h"] = "{}%".format(price["quote"]["USD"]["percent_change_24h"])
+
     if session["user"]:
-        return render_template("portfolio.html", username=username, names=names)
+        return render_template("portfolio.html", username=username, names=names, prices=prices)
 
 
 
@@ -142,15 +147,35 @@ def add_record():
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
 
+        # Collects the data from the users form
+
         quantity = request.form.get("quantity")
         per_coin = request.form.get("per-coin")
         total = float(quantity) * float(per_coin)
+        coin_id = request.form.get("coin_id")
 
-        names = crypto.get_name()
+        get_coin = mongo.db.portfolios.find(
+            {"coin_id": ""})
+        # Finds coins that match the same id as the one being added to insert data
+
+        crypto_holdings = mongo.db.portfolio.find({"holdings": ""})
+        holdings = float(quantity) + float(crypto_holdings)
+        # Finds the current holdings and adds the lastest quantity data to it
+
+        # price = IDK HOW TO DO THIS YET
+        value = float(holdings) * float(price)
+        # Price finds the current price for the coin_id and value multiplys it with the users holdings
+
+        crypto_total = mongo.db.portfolio.find({"grand_total": ""})
+        grand_total = float(total) + float(crypto_total)
+        # Finds the current total and adds the latest total data to it
+
+        profit_loss = float(value) - float(grand_total)
+        # If the value is more than the grand_total it will return a postive number otherwise it will return negative (loss)
 
         records = {
             "username": session["user"],
-            "coin_id": request.form.get("coin_id"),
+            "coin_id": coin_id,
             "quantity": float(quantity),
             "per-coin": float(per_coin),
             "date": request.form.get("date"),
@@ -159,35 +184,53 @@ def add_record():
         }
         mongo.db.cryptos.insert_one(records)
 
-        # # # Holdings   quantity + quantity = holdings
-        crypto_quantity = mongo.db.cryptos.find({}, {"quantity": 1})
-        holdings = float(quantity) + float(crypto_quantity)
-        # Issue need to grab them by name and filter the ones that match to add them up
+        find_portfolio = mongo.db.portfolios.find(
+            {"username": session["user"]})["username"]
+            # Finds username that matches the current users account
 
-        # GrandTotal total + total = grand_total
-        crypto_total = mongo.db.cryptos.find({}, {"total": 1})
-        grand_total = float(total) + float(crypto_total)
-        # Issue need to grab them by name and filter the ones that match to add them up
+        if find_portfolio == username and get_coin == coin_id:
 
-        # Value holdings * price = value
+            my_portfolios = {
+                "username": session["user"],
+                "id": [{
+                    "coin_id": coin_id,
+                    "holdings": holdings,
+                    "value": value,
+                    "grand_total": grand_total,
+                    "profit_loss": profit_loss
+                }]
+            }
+            mongo.db.portfolios.insert_one(my_portfolios)
+            # If the username and coin_id match a record in the portfolios collection it adds the users new data
 
-        prices = crypto.get_top_50()
+        elif find_portfolio == username and get_coin != coin_id:
+            my_portfolios = {
+                "username": session["user"],
+                "id": [{
+                    "coin_id": coin_id,
+                    "holdings": quantity,
+                    "value": value,
+                    "grand_total": total,
+                    "profit_loss": profit_loss
+                }]
+            }
+            mongo.db.portfolios.insert_one(my_portfolios)
+            # If the username matches but coin_id does not then it creates a new array within ID
 
-        for price in prices:
-            price["quote"]["USD"]["price"] = "$" + "{:.4f}".format(price["quote"]["USD"]["price"])
-            price["quote"]["USD"]["percent_change_24h"] = "{}%".format(price["quote"]["USD"]["percent_change_24h"])
-        
-        # Profit / Loss value - grand_total = profit_loss
+        else:
+            my_portfolios = {
+                "username": session["user"],
+                "id": [{
+                    "coin_id": coin_id,
+                    "holdings": quantity,
+                    "value": value,
+                    "grand_total": total,
+                    "profit_loss": profit_loss
+                }]
+            }
+            mongo.db.portfolios.insert_one(my_portfolios)
+            # If the username and coin_id does not then it creates a new record / new portfolio
 
-        my_portfolio = {
-            "username": session["user"],
-            "coin_id": request.form.get("coin_id"),
-            "holdings": float(holdings),
-            "value": value,
-            "grand_total": float(grand_total),
-            "profit_loss": profit_loss
-        }
-        mongo.db.portfolios.insert_one(my_portfolio)
         flash("Crypto Successfuly Added")
         return redirect(url_for("portfolio"))
 
