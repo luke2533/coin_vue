@@ -3,14 +3,14 @@
 <!-- (https://blog.tati.digital/2020/11/30/python-flask-web-application-tutorial-2020-display-coinmarketcap-api-data/) -->
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-10">
+            <div class="col-9">
                 <h1>CoinVue</h1>
                 <h3>Displaying the latest Crypto prices</h3>
 
                 <table class="table table-striped">
                     <thead class="thead-dark">
                         <tr>
-                        <th scope="col">Cryto Name</th>
+                        <th scope="col"><strong>Cryto Name</strong></th>
                         <th scope="col">Symbol</th>
                         <th scope="col">Price</th>
                         <th scope="col">Price Change % (24h)</th>
@@ -20,10 +20,10 @@
                     </thead>
 
 
-                    <tbody>
+                    <tbody class="crypto-table">
                         {% for obj in results %}
                             <tr>
-                            <td>{{ obj.name }}</td>
+                            <td><strong class="crypto-name">{{ obj.name }}</strong></td>
                             <td>{{ obj.symbol }}</td>
                             <td>{{ obj.quote.USD.price }}</td>
                             <td>{{ obj.quote.USD.percent_change_24h }}</td>

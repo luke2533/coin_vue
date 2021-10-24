@@ -31,7 +31,7 @@ def coinvue():
         result["quote"]["USD"]["price"] = "$" + "{:.4f}".format(result["quote"]["USD"]["price"])
         result["quote"]["USD"]["market_cap"] = "$" + "{:.2f}".format(result["quote"]["USD"]["market_cap"])
         result["quote"]["USD"]["volume_24h"] = "$" + "{:.2f}".format(result["quote"]["USD"]["volume_24h"])
-        result["quote"]["USD"]["percent_change_24h"] = "{}%".format(result["quote"]["USD"]["percent_change_24h"])
+        result["quote"]["USD"]["percent_change_24h"] = "{:.4f}%".format(result["quote"]["USD"]["percent_change_24h"])
     # The {:.4f} is the number of decimal places
     return render_template("index.html", **locals())
 
@@ -154,11 +154,13 @@ def add_record():
         total = float(quantity) * float(per_coin)
         coin_id = request.form.get("coin_id")
 
-        get_coin = mongo.db.portfolios.find(
-            {"coin_id": ""})
+        get_coin = mongo.db.portfolios.find_one(
+            {"id": {"coin_1": 1}})
+        print(get_coin)
         # Finds coins that match the same id as the one being added to insert data
 
-        crypto_holdings = mongo.db.portfolio.find({"holdings": ""})
+        crypto_holdings = mongo.db.portfolio.find_one({"id": {"holdings": 1}})
+        print(crypto_holdings)
         holdings = float(quantity) + float(crypto_holdings)
         # Finds the current holdings and adds the lastest quantity data to it
 
@@ -166,7 +168,8 @@ def add_record():
         value = float(holdings) * float(price)
         # Price finds the current price for the coin_id and value multiplys it with the users holdings
 
-        crypto_total = mongo.db.portfolio.find({"grand_total": ""})
+        crypto_total = mongo.db.portfolio.find_one({"id": {"grand_total": 1}})
+        print(crypto_total)
         grand_total = float(total) + float(crypto_total)
         # Finds the current total and adds the latest total data to it
 
@@ -184,7 +187,7 @@ def add_record():
         }
         mongo.db.cryptos.insert_one(records)
 
-        find_portfolio = mongo.db.portfolios.find(
+        find_portfolio = mongo.db.portfolios.find_one(
             {"username": session["user"]})["username"]
             # Finds username that matches the current users account
 
@@ -200,7 +203,7 @@ def add_record():
                     "profit_loss": profit_loss
                 }]
             }
-            mongo.db.portfolios.insert_one(my_portfolios)
+            mongo.db.portfolios.update_one(my_portfolios)
             # If the username and coin_id match a record in the portfolios collection it adds the users new data
 
         elif find_portfolio == username and get_coin != coin_id:
@@ -214,7 +217,7 @@ def add_record():
                     "profit_loss": profit_loss
                 }]
             }
-            mongo.db.portfolios.insert_one(my_portfolios)
+            mongo.db.portfolios.update_one(my_portfolios)
             # If the username matches but coin_id does not then it creates a new array within ID
 
         else:

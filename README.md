@@ -310,6 +310,14 @@ Additions:
 - Updates to app.py
 - my_portfolio collection
 
+### 6.27 Changes to home page, nav-bar and footer css
+
+Additions:
+
+- Home page background color
+- Nav-bar links curved, hover animation and changes to color
+- Footer CSS changes to color
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
