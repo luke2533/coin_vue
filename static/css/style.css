@@ -59,6 +59,28 @@ body{
 
 /* Nav-bar */
 
+/* Nav-bar mobile */
+
+#card-border{
+    border: 0px;
+}
+
+#bar-button{
+    background-color: #161b22;
+}
+
+.nav-icon{
+    font-size: 1em;
+    color: #FFAC5E;
+    margin: 5px;
+}
+
+.card-mobile{
+    background-color: #161b22;
+}
+
+/* Nav-bar mobile */
+
 /* Home page */
 
 .crypto-table{
@@ -86,7 +108,7 @@ body{
 
 .profile{
     border: black 3px solid;
-    background-color: #FFAC5E;
+    background-color: black;
     margin: 50px;
     padding: 50px;
     text-align: center;
@@ -99,6 +121,37 @@ body{
 .record{
     width: 140px;
     border: solid 1px black;
+}
+
+.portfolio-card{
+    background-color: black;
+    border: black solid 1px;
+}
+
+.portfolio-title{
+    color: #FFAC5E;
+}
+
+.portoflio-body{
+    background-color: #FFAC5E;
+    border: black solid 1px;
+}
+
+.portfolio-table{
+    color: #FFAC5E;
+}
+
+.modal-content{
+    
+}
+
+.modal-header{
+    background-color: #0d1117;
+}
+
+.modal-body{
+    background-color: #161b22;
+    justify-content: center;
 }
 
 /* My Portfolio */
@@ -123,3 +176,44 @@ body{
 }
 
 /* Footer */
+
+/* Breakpoints */
+
+@media screen and (max-width: 424px){
+
+}
+
+@media screen and (min-width: 424px){
+    
+}
+
+@media screen and (max-width: 767px){
+    .nav-desktop{
+        display: none;
+      }
+}
+
+@media screen and (min-width: 767px){
+    .nav-mobile{
+        display: none;
+      }
+}
+
+@media screen and (max-width: 1023px){
+
+}
+
+@media screen and (min-width: 1023px){
+
+}
+
+@media screen and (max-width: 1439px){
+
+}
+
+@media screen and (min-width: 1439px){
+
+}
+
+
+/* Breakpoints */

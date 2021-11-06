@@ -318,6 +318,13 @@ Additions:
 - Nav-bar links curved, hover animation and changes to color
 - Footer CSS changes to color
 
+### 6.28 Mobile nav bar breakpoints
+
+Additions:
+
+- My portfolio css changes
+- Nav bar breakpoints mobile
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

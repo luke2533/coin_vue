@@ -17,8 +17,11 @@
 <body>
 
     <header>
+
+<!-- Desktop and tablet nav -->
+
         <div class="container-fluid">
-            <div class="row nav-bar">
+            <div class="row nav-bar nav-desktop">
                 <div class="col-md-4">
                     <ul class="nav">
                         <li class="nav-item">
@@ -33,7 +36,7 @@
                 <div class="col-md-8">
                     <ul class="nav nav-bar float-right">
                         <li class="nav-item"><a href="{{ url_for('coinvue') }}" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li>
+                        <!-- <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li> -->
                         {% if session.user %}
                             <li class="nav-item"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li>
                             <li class="nav-item"><a href="{{ url_for('portfolio') }}" class="nav-link">My Portfolio</a></li>
@@ -46,6 +49,53 @@
                 </div>
             </div>
         </div>
+
+<!-- Desktop and tablet nav -->
+
+<!-- Mobile nav -->
+
+        <div class="container-fluid">
+            <div class="row nav-bar nav-mobile justify-content-center">
+                <div class="col-md-12">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="{{ url_for('coinvue') }}">
+                                <img src="https://thumbs.dreamstime.com/b/blockchain-technology-icon-vector-block-chain-symbol-blockchain-technology-modern-icon-vector-block-chain-symbol-logo-element-106099068.jpg"
+                                alt="CoinVue logo" class="logo"></a>
+                        </li>
+                        <li class="nav-item"><a href="{{ url_for('coinvue') }}"><h1 class="nav-title">CoinVue</h1></a></li>
+                        <li class="nav-item">
+                            <div class="accordion" id="nav-menu">
+                                <div class="card" id="card-border">
+                                    <div class="card-header card-mobile" id="nav-heading">
+                                        <button type="button" id="bar-button" data-toggle="collapse" data-target="#mobile-menu" aria-expanded="true" aria-controls="nav-menu"><i class="fas fa-bars nav-icon"></i></button>
+                                    </div>
+                                    <div id="mobile-menu" class="collapse" aria-labelledby="nav-heading" data-parent="#nav-menu">
+                                        <div class="card-body">
+                                            <ul class="nav nav-bar float-right">
+                                                <li class="nav-item"><a href="{{ url_for('coinvue') }}" class="nav-link">Home</a></li>
+                                                <!-- <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li> -->
+                                                {% if session.user %}
+                                                    <li class="nav-item"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li>
+                                                    <li class="nav-item"><a href="{{ url_for('portfolio') }}" class="nav-link">My Portfolio</a></li>
+                                                    <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Log out</a></li>
+                                                {% else %}
+                                                    <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Log in</a></li>
+                                                    <li class="nav-item"><a href="{{ url_for('signup') }}" class="nav-link">Sign up</a></li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+<!-- Mobile nav -->
+
     </header>
 
     <section>
