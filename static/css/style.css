@@ -130,7 +130,11 @@ body{
 }
 
 .user{
+    background-color: #0d1117;
+    box-shadow: 1px 1px 1px black;
     margin: 5px;
+    border-radius: 7px;
+    color: white;
 }
 
 .profile{
@@ -139,6 +143,15 @@ body{
     margin: 50px;
     padding: 50px;
     text-align: center;
+}
+
+.user-button{
+    background-color: #0d1117;
+    box-shadow: 1px 1px 1px black;
+    color: #FFAC5E;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
 }
 
 /* Log in, Sign up and Profile page */
@@ -197,10 +210,11 @@ body{
 }
 
 .footer-icon{
-    font-size: 3em;
+    font-size: 2.7em;
     color: #FFAC5E;
     margin: 5px;
 }
+
 
 /* Footer Desktop */
 
@@ -232,33 +246,43 @@ body{
 @media screen and (max-width: 767px){
     .nav-desktop{
         display: none;
-      }
-      .crypto-desktop{
+    }
+    .footer-desktop{
         display: none;
-      }
-      .footer-desktop{
+    }
+    .log-in-desktop{
         display: none;
-      }
+    }
+    .sign-up-desktop{
+        display: none;
+    }
 }
 
 @media screen and (min-width: 767px){
     .nav-mobile{
         display: none;
-      }
-      .crypto-mobile{
+    }
+    .footer-mobile{
         display: none;
-      }
-      .footer-mobile{
+    }
+    .log-in-mobile{
         display: none;
-      }
+    }
+    .sign-up-mobile{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1023px){
-
+    .crypto-desktop{
+        display: none;
+    }
 }
 
 @media screen and (min-width: 1023px){
-
+    .crypto-mobile{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1439px){

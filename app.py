@@ -102,7 +102,8 @@ def login():
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username")
                     flash("Welcome, {}".format(request.form.get("username")))
-                    return redirect(url_for("profile", username=session["user"]))
+                    # return redirect(url_for("profile", username=session["user"]))
+                    return redirect(url_for("portfolio"))
             else:
                 # Wrong password
                 flash("Inccorect Username and/or Password")
@@ -122,10 +123,6 @@ def profile(username):
     #Grabs session users username
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    
-    if session["user"]:
-        return render_template("profile.html", username=username)
-
     return redirect(url_for("login"))
 
 

@@ -334,6 +334,13 @@ Additions:
 - Footer mobile and small mobile responsive breakpoints
 - Mobile home page crypto table scrolls horizontally
 
+### 6.30 Responsive home page and removal of profile page
+
+Additions:
+
+- Home page is responsive on all devices
+- Removing of profile page, when user logs in they will be redirected to their portfolio
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
