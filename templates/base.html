@@ -55,15 +55,9 @@
 <!-- Mobile nav -->
 
         <div class="container-fluid">
-            <div class="row nav-bar nav-mobile justify-content-center">
+            <div class="row nav-bar nav-mobile">
                 <div class="col-md-12">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a href="{{ url_for('coinvue') }}">
-                                <img src="https://thumbs.dreamstime.com/b/blockchain-technology-icon-vector-block-chain-symbol-blockchain-technology-modern-icon-vector-block-chain-symbol-logo-element-106099068.jpg"
-                                alt="CoinVue logo" class="logo"></a>
-                        </li>
-                        <li class="nav-item"><a href="{{ url_for('coinvue') }}"><h1 class="nav-title">CoinVue</h1></a></li>
+                    <ul class="nav justify-content-center" style="align-items: center;">
                         <li class="nav-item">
                             <div class="accordion" id="nav-menu">
                                 <div class="card" id="card-border">
@@ -71,23 +65,29 @@
                                         <button type="button" id="bar-button" data-toggle="collapse" data-target="#mobile-menu" aria-expanded="true" aria-controls="nav-menu"><i class="fas fa-bars nav-icon"></i></button>
                                     </div>
                                     <div id="mobile-menu" class="collapse" aria-labelledby="nav-heading" data-parent="#nav-menu">
-                                        <div class="card-body">
+                                        <div class="card-body card-body-mobile">
                                             <ul class="nav nav-bar float-right">
-                                                <li class="nav-item"><a href="{{ url_for('coinvue') }}" class="nav-link">Home</a></li>
+                                                <li class="nav-item nav-item-mobile"><a href="{{ url_for('coinvue') }}" class="nav-link">Home</a></li>
                                                 <!-- <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li> -->
                                                 {% if session.user %}
-                                                    <li class="nav-item"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li>
-                                                    <li class="nav-item"><a href="{{ url_for('portfolio') }}" class="nav-link">My Portfolio</a></li>
-                                                    <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Log out</a></li>
+                                                    <li class="nav-item nav-item-mobile"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li>
+                                                    <li class="nav-item nav-item-mobile"><a href="{{ url_for('portfolio') }}" class="nav-link">My Portfolio</a></li>
+                                                    <li class="nav-item nav-item-mobile"><a href="{{ url_for('logout') }}" class="nav-link">Log out</a></li>
                                                 {% else %}
-                                                    <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Log in</a></li>
-                                                    <li class="nav-item"><a href="{{ url_for('signup') }}" class="nav-link">Sign up</a></li>
+                                                    <li class="nav-item nav-item-mobile"><a href="{{ url_for('login') }}" class="nav-link">Log in</a></li>
+                                                    <li class="nav-item nav-item-mobile"><a href="{{ url_for('signup') }}" class="nav-link">Sign up</a></li>
                                                 {% endif %}
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </li>
+                        <li class="nav-item"><a href="{{ url_for('coinvue') }}"><h1 class="nav-title title-mobile">CoinVue</h1></a></li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('coinvue') }}">
+                                <img src="https://thumbs.dreamstime.com/b/blockchain-technology-icon-vector-block-chain-symbol-blockchain-technology-modern-icon-vector-block-chain-symbol-logo-element-106099068.jpg"
+                                alt="CoinVue logo" class="logo-mobile"></a>
                         </li>
                     </ul>
                 </div>
@@ -115,8 +115,10 @@
 
     <footer>
 
+        <!-- Footer Desktop -->
+
         <div class="container-fluid">
-            <div class="row footer justify-content-center">
+            <div class="row footer justify-content-center footer-desktop">
                 <div class="col-md-3">
                     <h2 class="footer-title">Social media</h2>
                     <br>
@@ -136,6 +138,34 @@
                 </div>
             </div>
         </div>    
+
+        <!-- Footer Desktop -->
+
+        <!-- Footer Mobile -->
+
+        <div class="container-fluid">
+            <div class="row footer justify-content-center footer-mobile">
+                <div class="col-6">
+                    <h2 class="footer-title-mobile">Social media</h2>
+                    <br>
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-square footer-icon-mobile"></i></a>
+                    <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube footer-icon-mobile"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter footer-icon-mobile"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram footer-icon-mobile"></i></a>
+                </div>
+
+                <div class="col-6">
+                    <h2 class="footer-title-mobile">Navigation</h2>
+                    <br>
+                    <a href="{{ url_for('coinvue') }}"><i class="fas fa-home footer-icon-mobile"></i></a>
+                    <a href=""><i class="fas fa-university footer-icon-mobile"></i></a>
+                    <a href=""><i class="fas fa-coins footer-icon-mobile"></i></a>
+                    <a href="{{ url_for('login') }}"><i class="fas fa-user footer-icon-mobile"></i></a>
+                </div>
+            </div>
+        </div>    
+
+        <!-- Footer Mobile -->
 
     </footer>
 

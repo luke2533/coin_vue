@@ -325,6 +325,15 @@ Additions:
 - My portfolio css changes
 - Nav bar breakpoints mobile
 
+### 6.29 Mobile footer breakpoints and updates to nav-bar mobile
+
+Additions:
+
+- Mobile nav-bar drop down menu appears infront of the text
+- Changed the order of logo, title and drop down menu
+- Footer mobile and small mobile responsive breakpoints
+- Mobile home page crypto table scrolls horizontally
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

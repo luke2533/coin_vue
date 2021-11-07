@@ -70,13 +70,36 @@ body{
 }
 
 .nav-icon{
-    font-size: 1em;
+    font-size: 1.25em;
     color: #FFAC5E;
     margin: 5px;
+
 }
 
 .card-mobile{
     background-color: #161b22;
+    padding: 0px;
+    margin: 0px;
+}
+
+.title-mobile{
+    font-size: 2em;
+    padding: 5px;
+}
+
+.logo-mobile{
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+}
+
+.card-body-mobile{
+    z-index: 5;
+    position: fixed;
+}
+
+.nav-item-mobile{
+    font-size: 1em;
 }
 
 /* Nav-bar mobile */
@@ -89,6 +112,10 @@ body{
 
 .crypto-name{
     color: white;
+}
+
+.crypto-mobile{
+    overflow-x: scroll;
 }
 
 /* Home page */
@@ -156,7 +183,7 @@ body{
 
 /* My Portfolio */
 
-/* Footer */
+/* Footer Desktop */
 
 .footer{
     background-color: #161b22;
@@ -175,7 +202,22 @@ body{
     margin: 5px;
 }
 
-/* Footer */
+/* Footer Desktop */
+
+/* Footer Mobile */
+
+.footer-icon-mobile{
+    font-size: 2em;
+    color: #FFAC5E;
+    margin: 5px;
+}
+
+.footer-title-mobile{
+    font-size: 1.4em;
+    color: #FFAC5E;
+}
+
+/* Footer Mobile */
 
 /* Breakpoints */
 
@@ -191,10 +233,22 @@ body{
     .nav-desktop{
         display: none;
       }
+      .crypto-desktop{
+        display: none;
+      }
+      .footer-desktop{
+        display: none;
+      }
 }
 
 @media screen and (min-width: 767px){
     .nav-mobile{
+        display: none;
+      }
+      .crypto-mobile{
+        display: none;
+      }
+      .footer-mobile{
         display: none;
       }
 }
