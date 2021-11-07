@@ -341,6 +341,13 @@ Additions:
 - Home page is responsive on all devices
 - Removing of profile page, when user logs in they will be redirected to their portfolio
 
+### 6.31 Responsive log in and sign up page on all devices
+
+Additions:
+
+- Log in page is responsive on all devices
+- Sign up page is responsive on all devices
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
