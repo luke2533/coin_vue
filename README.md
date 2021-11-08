@@ -348,6 +348,14 @@ Additions:
 - Log in page is responsive on all devices
 - Sign up page is responsive on all devices
 
+### 6.32 Responsive portfolio page and new fonts for titles and text
+
+Additions:
+
+- Portfolio page is responsive on all devices
+- Added Prompt title font
+- Added Exo 2 text font
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

@@ -2,7 +2,7 @@
 {% block content %}
 
     <section>
-        {% for record in records %}
+        <!-- {% for record in records %}
             {{ record.username }}<br>
             {{ record.name }}<br>
             {{ record.quantity }}<br>
@@ -10,23 +10,26 @@
             {{ record.date }}<br>
             {{ record.notes }}<br>
             {{ record.total }}<br>
-        {% endfor %} 
+        {% endfor %}  -->
+        
+<!-- Portfolio Desktop -->
+
         <div class="containter-fluid">
-            <div class="row justify-content-center">
-                <div class="col-8">
+            <div class="row justify-content-center portfolio-desktop">
+                <div class="col-11">
                     <div class="accordion" id="accordionExample">
                         <div class="card portoflio-body">
                             <div class="card-header portfolio-card" id="headingOne">
                                 <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#portfolio-chart" aria-expanded="true" aria-controls="portfolio-chart">
                                     <div class="row">
-                                        <div class="col-3 portfolio-title">
+                                        <div class="col-10 portfolio-title">
                                             <h2>{{ username }}'s Portfolio</h2>
                                         </div>
                                     </div>
                                     
                                     <div class="row">
-                                        <div class="col-3 portfolio-title">
+                                        <div class="col-6 portfolio-title">
                                             <h3>$7318.09</h3>
                                         </div>
                                     </div>
@@ -38,14 +41,138 @@
                             <div id="portfolio-chart" class="collapse" aria-labelledby="My Portfolio" data-parent="#portfolio-chart">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-8 portfolio-title">
+                                        <div class="col-6 portfolio-title">
                                             <h4>-$129.10 24h</h4>
                                         </div>
 
-                                        <div class="col-4 text-right">
-                                            <button type="button">Edit Portfolio</button>
+                                        <div class="col-6 text-right">
+                                            <button type="button" class="user-button">Edit Portfolio</button>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#record-crypto">
+                                            <button type="button" class="user-button" data-toggle="modal" data-target="#record-crypto">
+                                                + Add New
+                                            </button>
+                                    
+                                            <!-- Modal -->
+                                            <!-- NEED TO UPDATE THE MOBILE VERSION -->
+                                            <div class="modal fade" id="record-crypto" tabindex="-1" aria-labelledby="record" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="record">Add Transaction</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #FFAC5E;">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            
+                                                            <div class="row justify-content-center">
+                                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                                    <button type="button" class="portfolio-button">Buy</button>
+                                                                    <button type="button" class="portfolio-button">Sell</button>
+                                                                    <button type="button" class="portfolio-button">Edit</button>
+                                                                    <button type="button" class="portfolio-button">Transfer</button>
+                                                                    <button type="button" class="portfolio-button">Staking</button>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Just do buy and sell for now -->
+
+                                                            <form method="POST" action="{{ url_for('add_record') }}">
+                                                                <div class="row justify-content-center">
+                                                                    <div class="form-group">                                          
+                                                                        <select class="form-control record" id="coin_id" name="coin_id">
+                                                                            <option disabled selected>Select Coin</option>                                                                 
+                                                                        {% for obj in names %}                                                                
+                                                                            <option>{{ obj.name }}</option>                                                                 
+                                                                        {% endfor %}
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            <!-- Change each option out for a single one that automatcically adds them -->
+
+                                                            
+                                                                <div class="row justify-content-center">
+                                                                    <div class="col-12">
+                                                                        <label for="quantity">Quantity</label>
+                                                                        <input type="text" placeholder="0.00" class="record" id="quantity" name="quantity" required>
+                                                                        <label for="per-coin">Price Per Coin</label>
+                                                                        <input type="text" placeholder="$0.00" class="record" id="per-coin" name="per-coin" required>
+                                                                    </div>
+                                                                </div>
+                                                            <!-- User crypto record form -->
+
+                                                                <div class="row justify-content-center">                                                               
+                                                                        <div class="col-12">
+                                                                            <input type="date" class="record" id="date" name="date" placeholder="Date" required>
+                                                                            <input type="text" class="record" id="notes" name="notes" placeholder="Notes">
+                                                                        </div>
+                                                                </div>
+                                                            <!-- Users can add the date of purchase and add notes -->
+
+                                                                <div class="row justify-content-center">
+                                                                    <label for="total">Total Spent</label>
+                                                                    <input type="text" class="record" id="total" name="total" placeholder="$0.00" readonly>
+                                                                </div>
+                                                            
+                                                        
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="user-button" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="user-button">Add Transaction</button>
+                                                                </div>
+                                                            </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- <img height="500px" width="1400px" src="https://images.squarespace-cdn.com/content/v1/55b6a6dce4b089e11621d3ed/1585087896250-R3GZ6OFWYQRZUJRCJU3D/produce_monthly.png" alt="PLACEHOLDER FOR CHART"> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Portfolio Desktop -->
+
+<!-- Portfolio Mobile -->
+
+        <div class="containter-fluid">
+            <div class="row justify-content-center portfolio-mobile">
+                <div class="col-12">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card portoflio-body">
+                            <div class="card-header portfolio-card" id="headingOne">
+                                <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#portfolio-chart" aria-expanded="true" aria-controls="portfolio-chart">
+                                    <div class="row">
+                                        <div class="col-12 portfolio-title">
+                                            <h3>{{ username }}'s Portfolio</h3>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-10 portfolio-title">
+                                            <h4>$7318.09</h4>
+                                        </div>
+                                    </div>
+                                        
+                                </button>
+                                </h2>
+                            </div>
+                        
+                            <div id="portfolio-chart" class="collapse" aria-labelledby="My Portfolio" data-parent="#portfolio-chart">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-5 portfolio-title profit-mobile">
+                                            <h5>-$129.10 24h</h5>
+                                        </div>
+
+                                        <div class="col-7 text-right profit-mobile">
+                                            <!-- <button type="button" class="button-mobile">Edit Portfolio</button> -->
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="user-button" data-toggle="modal" data-target="#record-crypto">
                                                 + Add New
                                             </button>
                                     
@@ -121,7 +248,6 @@
                                         </div>
                                     </div>
 
-                                    <img height="500px" width="1400px" src="https://images.squarespace-cdn.com/content/v1/55b6a6dce4b089e11621d3ed/1585087896250-R3GZ6OFWYQRZUJRCJU3D/produce_monthly.png" alt="PLACEHOLDER FOR CHART">
                                 </div>
                             </div>
                         </div>
@@ -129,13 +255,19 @@
                 </div>
             </div>
         </div>
+
+<!-- Portfolio Mobile -->
+
     </section>
 
     <section>
         <!-- THIS IS WHERE STEP 2 READ -->
+
+        <!-- Portfolio Holdings Desktop -->
+
         <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-8">
+            <div class="row justify-content-center holdings-desktop">
+                <div class="col-10">
                     <table class="table table-striped portfolio-table">
                         <thead>
                             <tr>
@@ -174,6 +306,47 @@
             </div>
         </div>
         <!-- Will need to work out how to only show user spesfic records that share the same username -->
+
+        <!-- Portfolio Holdings Desktop -->
+
+        <!-- Portfolio Holdings Mobile -->
+
+        <div class="container-fluid">
+            <div class="row justify-content-center holdings-mobile">
+                <div class="col-12">
+                    <table class="table table-striped portfolio-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">24h %</th>
+                                <th scope="col">Holdings</th>
+                                <th scope="col">Value</th>
+                                <th scope="col">Profit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- {,% for portfolio in my_portfolios %,} -->
+                                {% for obj in prices %}
+                                    <tr>
+                                    <td></td>
+                                    <td>{{ obj.quote.USD.price }}</td>
+                                    <td>{{ obj.quote.USD.percent_change_24h }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    </tr>
+                                {% endfor %}
+                            <!-- {,% endfor %,} -->
+                            
+                        </tbody>
+                    </table>       
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio Holdings Mobile -->
+
     </section>
 
 

@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&family=Prompt:wght@300;400;700&display=swap');
 /* Univesal */
 
 body{
     background-image: linear-gradient(#0d1117, #161b22, #0d1117);
     color: #FFAC5E;
+    font-family: "Exo 2", sans-serif;
 }
 
+h1{
+    font-family: "Prompt", sans-serif;
+}
 
 .flash{
     background-color: aqua;
@@ -161,11 +166,17 @@ body{
 .record{
     width: 140px;
     border: solid 1px black;
+    background-color: #0d1117;
+    box-shadow: 1px 1px 1px black;
+    margin: 3px;
+    border-radius: 10px;
+    color: white;
 }
 
 .portfolio-card{
-    background-color: black;
+    background-color: #070a0f;
     border: black solid 1px;
+    margin: 10px;
 }
 
 .portfolio-title{
@@ -173,8 +184,10 @@ body{
 }
 
 .portoflio-body{
-    background-color: #FFAC5E;
+    background-color: #161b22;
+    margin: 10px;
     border: black solid 1px;
+    padding: 5px;
 }
 
 .portfolio-table{
@@ -192,6 +205,23 @@ body{
 .modal-body{
     background-color: #161b22;
     justify-content: center;
+}
+
+.holdings-mobile{
+    overflow-x: scroll;
+}
+
+.profit-mobile{
+    padding: 0px;
+}
+
+.portfolio-button{
+    background-color: #0d1117;
+    box-shadow: 1px 1px 1px black;
+    color: #FFAC5E;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: none;
 }
 
 /* My Portfolio */
@@ -255,6 +285,9 @@ body{
     }
     .sign-up-desktop{
         display: none;
+    } 
+    .portfolio-desktop{
+        display: none;
     }
 }
 
@@ -271,16 +304,31 @@ body{
     .sign-up-mobile{
         display: none;
     }
+    .portfolio-mobile{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1023px){
     .crypto-desktop{
         display: none;
     }
+    /* .portfolio-desktop{
+        display: none;
+    } */
+    .holdings-desktop{
+        display: none;
+    }
 }
 
 @media screen and (min-width: 1023px){
     .crypto-mobile{
+        display: none;
+    }
+    /* .portfolio-mobile{
+        display: none;
+    } */
+    .holdings-mobile{
         display: none;
     }
 }

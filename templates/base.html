@@ -38,7 +38,7 @@
                         <li class="nav-item"><a href="{{ url_for('coinvue') }}" class="nav-link">Home</a></li>
                         <!-- <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li> -->
                         {% if session.user %}
-                            <li class="nav-item"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li>
+                            <!-- <li class="nav-item"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li> -->
                             <li class="nav-item"><a href="{{ url_for('portfolio') }}" class="nav-link">My Portfolio</a></li>
                             <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Log out</a></li>
                         {% else %}
@@ -70,7 +70,7 @@
                                                 <li class="nav-item nav-item-mobile"><a href="{{ url_for('coinvue') }}" class="nav-link">Home</a></li>
                                                 <!-- <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li> -->
                                                 {% if session.user %}
-                                                    <li class="nav-item nav-item-mobile"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li>
+                                                    <!-- <li class="nav-item nav-item-mobile"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li> -->
                                                     <li class="nav-item nav-item-mobile"><a href="{{ url_for('portfolio') }}" class="nav-link">My Portfolio</a></li>
                                                     <li class="nav-item nav-item-mobile"><a href="{{ url_for('logout') }}" class="nav-link">Log out</a></li>
                                                 {% else %}
