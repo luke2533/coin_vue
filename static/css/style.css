@@ -62,6 +62,13 @@ h1{
     color: black;
 }
 
+
+.logo-tablet{
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+}
+
 /* Nav-bar */
 
 /* Nav-bar mobile */
@@ -75,10 +82,9 @@ h1{
 }
 
 .nav-icon{
-    font-size: 1.25em;
+    font-size: 1em;
     color: #FFAC5E;
     margin: 5px;
-
 }
 
 .card-mobile{
@@ -92,19 +98,21 @@ h1{
     padding: 5px;
 }
 
-.logo-mobile{
-    border-radius: 50%;
-    height: 80px;
-    width: 80px;
-}
-
-.card-body-mobile{
-    z-index: 5;
-    position: fixed;
-}
-
 .nav-item-mobile{
     font-size: 1em;
+    padding: 1px;
+}
+
+.nav-menu{
+    background-color: #161b22;
+    border: none;
+
+}
+
+.nav-menu-mobile{
+    width: 300px;
+    justify-content: center;
+    height: 60px;
 }
 
 /* Nav-bar mobile */
@@ -270,13 +278,10 @@ h1{
 }
 
 @media screen and (min-width: 424px){
-    
+
 }
 
 @media screen and (max-width: 767px){
-    .nav-desktop{
-        display: none;
-    }
     .footer-desktop{
         display: none;
     }
@@ -289,12 +294,13 @@ h1{
     .portfolio-desktop{
         display: none;
     }
+    .nav-tablet{
+        display: none;
+    }
+
 }
 
 @media screen and (min-width: 767px){
-    .nav-mobile{
-        display: none;
-    }
     .footer-mobile{
         display: none;
     }
@@ -307,16 +313,21 @@ h1{
     .portfolio-mobile{
         display: none;
     }
+    .nav-mobile{
+        display: none;
+    }
+
+
 }
 
 @media screen and (max-width: 1023px){
     .crypto-desktop{
         display: none;
     }
-    /* .portfolio-desktop{
-        display: none;
-    } */
     .holdings-desktop{
+        display: none;
+    }
+    .nav-desktop{
         display: none;
     }
 }
@@ -325,10 +336,10 @@ h1{
     .crypto-mobile{
         display: none;
     }
-    /* .portfolio-mobile{
-        display: none;
-    } */
     .holdings-mobile{
+        display: none;
+    }
+    .nav-tablet{
         display: none;
     }
 }

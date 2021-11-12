@@ -18,7 +18,7 @@
 
     <header>
 
-<!-- Desktop and tablet nav -->
+<!-- Desktop nav -->
 
         <div class="container-fluid">
             <div class="row nav-bar nav-desktop">
@@ -50,7 +50,40 @@
             </div>
         </div>
 
-<!-- Desktop and tablet nav -->
+<!-- Desktop nav -->
+<!-- Tablet nav -->
+
+        <div class="container-fluid">
+            <div class="row nav-bar nav-tablet">
+                <div class="col-md-5">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="{{ url_for('coinvue') }}">
+                                <img src="https://thumbs.dreamstime.com/b/blockchain-technology-icon-vector-block-chain-symbol-blockchain-technology-modern-icon-vector-block-chain-symbol-logo-element-106099068.jpg"
+                                alt="CoinVue logo" class="logo-tablet"></a>
+                        </li>
+                        <li class="nav-item"><a href="{{ url_for('coinvue') }}"><h1 class="nav-title">CoinVue</h1></a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-7">
+                    <ul class="nav nav-bar float-right">
+                        <li class="nav-item"><a href="{{ url_for('coinvue') }}" class="nav-link">Home</a></li>
+                        <!-- <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li> -->
+                        {% if session.user %}
+                            <!-- <li class="nav-item"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li> -->
+                            <li class="nav-item"><a href="{{ url_for('portfolio') }}" class="nav-link">My Portfolio</a></li>
+                            <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Log out</a></li>
+                        {% else %}
+                            <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Log in</a></li>
+                            <li class="nav-item"><a href="{{ url_for('signup') }}" class="nav-link">Sign up</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+<!-- Tablet nav -->
 
 <!-- Mobile nav -->
 
@@ -59,36 +92,29 @@
                 <div class="col-md-12">
                     <ul class="nav justify-content-center" style="align-items: center;">
                         <li class="nav-item">
-                            <div class="accordion" id="nav-menu">
-                                <div class="card" id="card-border">
-                                    <div class="card-header card-mobile" id="nav-heading">
-                                        <button type="button" id="bar-button" data-toggle="collapse" data-target="#mobile-menu" aria-expanded="true" aria-controls="nav-menu"><i class="fas fa-bars nav-icon"></i></button>
-                                    </div>
-                                    <div id="mobile-menu" class="collapse" aria-labelledby="nav-heading" data-parent="#nav-menu">
-                                        <div class="card-body card-body-mobile">
-                                            <ul class="nav nav-bar float-right">
-                                                <li class="nav-item nav-item-mobile"><a href="{{ url_for('coinvue') }}" class="nav-link">Home</a></li>
-                                                <!-- <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li> -->
-                                                {% if session.user %}
-                                                    <!-- <li class="nav-item nav-item-mobile"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li> -->
-                                                    <li class="nav-item nav-item-mobile"><a href="{{ url_for('portfolio') }}" class="nav-link">My Portfolio</a></li>
-                                                    <li class="nav-item nav-item-mobile"><a href="{{ url_for('logout') }}" class="nav-link">Log out</a></li>
-                                                {% else %}
-                                                    <li class="nav-item nav-item-mobile"><a href="{{ url_for('login') }}" class="nav-link">Log in</a></li>
-                                                    <li class="nav-item nav-item-mobile"><a href="{{ url_for('signup') }}" class="nav-link">Sign up</a></li>
-                                                {% endif %}
-                                            </ul>
-                                        </div>
+                            <div class="dropdown">
+                                <button class="user-button" type="button" id="mobile-nav" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bars nav-icon"></i>
+                                </button>
+                                <div class="dropdown-menu nav-menu" aria-labelledby="mobile-nav">
+                                    <div class="card-body card-body-mobile" style="padding: 0px;">
+                                        <ul class="nav nav-bar nav-menu-mobile">
+                                            <li class="nav-item nav-item-mobile"><a href="{{ url_for('coinvue') }}" class="nav-link">Home</a></li>
+                                            <!-- <li class="nav-item"><a href="" class="nav-link">Discover Portfolio</a></li> -->
+                                            {% if session.user %}
+                                                <!-- <li class="nav-item nav-item-mobile"><a href="{{ url_for('profile', username=session['user']) }}" class="nav-link">Profile</a></li> -->
+                                                <li class="nav-item nav-item-mobile"><a href="{{ url_for('portfolio') }}" class="nav-link">My Portfolio</a></li>
+                                                <li class="nav-item nav-item-mobile"><a href="{{ url_for('logout') }}" class="nav-link">Log out</a></li>
+                                            {% else %}
+                                                <li class="nav-item nav-item-mobile"><a href="{{ url_for('login') }}" class="nav-link">Log in</a></li>
+                                                <li class="nav-item nav-item-mobile"><a href="{{ url_for('signup') }}" class="nav-link">Sign up</a></li>
+                                            {% endif %}
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </li>
                         <li class="nav-item"><a href="{{ url_for('coinvue') }}"><h1 class="nav-title title-mobile">CoinVue</h1></a></li>
-                        <li class="nav-item">
-                            <a href="{{ url_for('coinvue') }}">
-                                <img src="https://thumbs.dreamstime.com/b/blockchain-technology-icon-vector-block-chain-symbol-blockchain-technology-modern-icon-vector-block-chain-symbol-logo-element-106099068.jpg"
-                                alt="CoinVue logo" class="logo-mobile"></a>
-                        </li>
                     </ul>
                 </div>
             </div>

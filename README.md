@@ -356,6 +356,14 @@ Additions:
 - Added Prompt title font
 - Added Exo 2 text font
 
+### 6.33 Responsive Nav-bar and changes to mobile Nav-menu
+
+Additions:
+
+- Responsive nav-bar on all devices 
+- Removed CoinVue logo on mobile devices
+- Changes to mobile nav-menu
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
