@@ -213,6 +213,11 @@ h1{
 .modal-body{
     background-color: #161b22;
     justify-content: center;
+    padding: 0px;
+}
+
+.modal-footer{
+    background-color: #0d1117;
 }
 
 .holdings-mobile{
@@ -230,6 +235,13 @@ h1{
     padding: 15px;
     margin-bottom: 10px;
     border: none;
+}
+
+.action-button{
+    border: none;
+    color: #FFAC5E;
+    padding: 5px;
+    margin: 1px;
 }
 
 /* My Portfolio */

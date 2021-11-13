@@ -9,6 +9,10 @@
             <div class="col-9">
                 <h1>CoinVue</h1>
                 <h3>Displaying the latest Crypto prices</h3>
+                {% if session.user %}
+                {% else %}
+                    <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up here</a></p>
+                {% endif %}
 
                 <table class="table table-striped">
                     <thead class="thead-dark">

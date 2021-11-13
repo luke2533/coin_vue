@@ -364,6 +364,15 @@ Additions:
 - Removed CoinVue logo on mobile devices
 - Changes to mobile nav-menu
 
+### 6.34 Added action button, records modal, sign up link on home page and mobile modal support
+
+Additions:
+
+- Added a sign up link to home page if user is not signed in
+- Added action button to My porfolio
+- Added Records modal desktop
+- Mobile transaction modal works
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

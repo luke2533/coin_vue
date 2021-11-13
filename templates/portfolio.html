@@ -48,17 +48,17 @@
                                         <div class="col-6 text-right">
                                             <button type="button" class="user-button">Edit Portfolio</button>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="user-button" data-toggle="modal" data-target="#record-crypto">
+                                            <button type="button" class="user-button" data-toggle="modal" data-target="#transaction-modal">
                                                 + Add New
                                             </button>
                                     
                                             <!-- Modal -->
                                             <!-- NEED TO UPDATE THE MOBILE VERSION -->
-                                            <div class="modal fade" id="record-crypto" tabindex="-1" aria-labelledby="record" aria-hidden="true">
+                                            <div class="modal fade" id="transaction-modal" tabindex="-1" aria-labelledby="transaction" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="record">Add Transaction</h5>
+                                                            <h5 class="modal-title" id="transaction">Add Transaction</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #FFAC5E;">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
@@ -172,13 +172,13 @@
                                         <div class="col-7 text-right profit-mobile">
                                             <!-- <button type="button" class="button-mobile">Edit Portfolio</button> -->
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="user-button" data-toggle="modal" data-target="#record-crypto">
+                                            <button type="button" class="user-button" data-toggle="modal" data-target="#transaction-modal-mobile">
                                                 + Add New
                                             </button>
                                     
                                             <!-- Modal -->
-                                            <div class="modal fade" id="record-crypto" tabindex="-1" aria-labelledby="record" aria-hidden="true">
-                                                <div class="modal-dialog">
+                                            <div class="modal fade" id="transaction-modal-mobile" tabindex="-1" aria-labelledby="record" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="record">Add Transaction</h5>
@@ -284,18 +284,71 @@
                                 <th scope="col">Profit / Loss</th>
                                 <!-- NOT displayed total + total = GrandTotal -->
                                 <!-- Value - GrandTotal == Profit/Loss -->
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- {,% for portfolio in my_portfolios %,} -->
                                 {% for obj in prices %}
                                     <tr>
-                                    <td></td>
-                                    <td>{{ obj.quote.USD.price }}</td>
-                                    <td>{{ obj.quote.USD.percent_change_24h }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                        <td></td>
+                                        <td>{{ obj.quote.USD.price }}</td>
+                                        <td>{{ obj.quote.USD.percent_change_24h }}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <button type="button" class="action-button" data-toggle="modal" data-target="#record-modal"><i class="fas fa-ellipsis-v"></i></button>
+                                            <!-- ADD THE RECORD MODAL HERE -->
+                                            <div class="modal fade" id="record-modal" tabindex="-1" aria-labelledby="record" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="record">(THE COINS NAME)</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row justify-content-center">
+                                                                <table>
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Type</th>
+                                                                            <th>Price</th>
+                                                                            <th>Quantity</th>
+                                                                            <th>Total</th>
+                                                                            <th>Date</th>
+                                                                            <th>Notes</th>
+                                                                            <th>Actions</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>Buy</td>
+                                                                            <td>2.00</td>
+                                                                            <td>12.50</td>
+                                                                            <td>25.00</td>
+                                                                            <td>13/11/2021</td>
+                                                                            <td>ADA Purchase</td>
+                                                                            <td>
+                                                                                <button type="button" class="action-button" data-toggle="modal" data-target="#transaction-modal"><i class="fas fa-edit"></i></button>
+                                                                                <button type="button" class="action-button"><i class="far fa-trash-alt"></i></button>
+                                                                            </td>
+                                                                            <!-- EXAMPLE -->
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="user-button" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="user-button">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                             <!-- {,% endfor %,} -->
@@ -323,6 +376,7 @@
                                 <th scope="col">Holdings</th>
                                 <th scope="col">Value</th>
                                 <th scope="col">Profit</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -335,6 +389,10 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
+                                    <td>
+                                        <button type="button" class="action-button"><i class="fas fa-ellipsis-v"></i></button>
+                                        <!-- ADD THE RECORD MODAL HERE -->
+                                    </td>
                                     </tr>
                                 {% endfor %}
                             <!-- {,% endfor %,} -->
