@@ -398,6 +398,14 @@ Additions:
 
 Issue RESOLVED #4 - Tabs only show the selected contents without empty spaces
 
+### 6.38 Mobile support for Transaction and Edit modals
+
+Additions:
+
+- Mobile Transaction tabs updated buy, sell and staking
+- Mobile Edit modal works on smaller devices
+- Removed desktop edit button from portfolio section
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

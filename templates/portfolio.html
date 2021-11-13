@@ -45,15 +45,13 @@
                                             <h4>-$129.10 24h</h4>
                                         </div>
 
-                                        <div class="col-6 text-right">
-                                            <button type="button" class="user-button">Edit Portfolio</button>
+                                        <div class="col-6 text-right">                                           
                                             <!-- Button trigger modal -->
                                             <button type="button" class="user-button" data-toggle="modal" data-target="#transaction-modal">
                                                 + Add New
                                             </button>
                                     
-                                            <!-- Modal -->
-                                            <!-- NEED TO UPDATE THE MOBILE VERSION -->
+                                            <!-- Transaction Modal -->
                                             <div class="modal fade" id="transaction-modal" tabindex="-1" aria-labelledby="transaction" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -276,13 +274,12 @@
                                         </div>
 
                                         <div class="col-7 text-right profit-mobile">
-                                            <!-- <button type="button" class="button-mobile">Edit Portfolio</button> -->
                                             <!-- Button trigger modal -->
                                             <button type="button" class="user-button" data-toggle="modal" data-target="#transaction-modal-mobile">
                                                 + Add New
                                             </button>
                                     
-                                            <!-- Modal -->
+                                            <!-- Transaction Modal Mobile -->
                                             <div class="modal fade" id="transaction-modal-mobile" tabindex="-1" aria-labelledby="record" aria-hidden="true">
                                                 <div class="modal-dialog modal-sm">
                                                     <div class="modal-content">
@@ -292,62 +289,166 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
+                                                        
                                                         <div class="modal-body">
                                                             
                                                             <div class="row justify-content-center">
-                                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                                    <button type="button" class="btn btn-secondary">Buy</button>
-                                                                    <button type="button" class="btn btn-secondary">Sell</button>
-                                                                    <button type="button" class="btn btn-secondary">Edit</button>
-                                                                    <button type="button" class="btn btn-secondary">Transfer</button>
-                                                                    <button type="button" class="btn btn-secondary">Staking</button>
-                                                                </div>
+                                                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link record-tab active" id="buy-tab" data-toggle="pill" href="#buy-mobile" role="tab" aria-controls="buy-tab" aria-selected="true">Buy</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link record-tab" id="sell-tab" data-toggle="pill" href="#sell-mobile" role="tab" aria-controls="sell-tab" aria-selected="false">Sell</a>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link record-tab" id="staking-tab" data-toggle="pill" href="#staking-mobile" role="tab" aria-controls="staking-tab" aria-selected="false">Staking</a>
+                                                                    </li> 
+                                                                      
+                                                                </ul>
                                                             </div>
-                                                            <!-- Just do buy and sell for now -->
-
-                                                            <form method="POST" action="{{ url_for('add_record') }}">
-                                                                <div class="row justify-content-center">
-                                                                    <div class="form-group">      
-                                                                                                                                
-                                                                        <select class="form-control" id="coin_id" name="coin_id">
-                                                                        {% for obj in names %}                                                                
-                                                                            <option>{{ obj.name }}</option>                                                                 
-                                                                        {% endfor %}
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            <!-- Change each option out for a single one that automatcically adds them -->
-
                                                             
-                                                                <div class="row justify-content-center">
-                                                                    <div class="col-12">
-                                                                        <label for="quantity">Quantity</label>
-                                                                        <input type="text" placeholder="0.00" class="record" id="quantity" name="quantity" required>
-                                                                        <label for="per-coin">Price Per Coin</label>
-                                                                        <input type="text" placeholder="$0.00" class="record" id="per-coin" name="per-coin" required>
-                                                                    </div>
-                                                                </div>
-                                                            <!-- User crypto record form -->
-
-                                                                <div class="row justify-content-center">                                                               
-                                                                        <div class="col-12">
-                                                                            <input type="date" class="record" id="date" name="date" placeholder="Date" required>
-                                                                            <input type="text" class="record" id="notes" name="notes" placeholder="Notes">
+                                                            <div class="tab-content" id="pills-tabContent">
+                                                                
+                                                                <!-- BUY -->
+                                                                <div class="tab-pane fade show active" id="buy-mobile" role="tabpanel" aria-labelledby="buy-tab">
+                                                                        
+                                                                    <form method="POST" action="{{ url_for('add_record') }}">
+                                                                        <div class="row justify-content-center">
+                                                                            <div class="form-group">                                          
+                                                                                <select class="form-control record" id="coin_id" name="coin_id">
+                                                                                    <option disabled selected>Select Coin</option>                                                                 
+                                                                                {% for obj in names %}                                                                
+                                                                                    <option>{{ obj.name }}</option>                                                                 
+                                                                                {% endfor %}
+                                                                                </select>
+                                                                            </div>
                                                                         </div>
+                                                                    <!-- Change each option out for a single one that automatcically adds them -->
+                                                                              
+                                                                        <div class="row justify-content-center">
+                                                                            <div class="col-12">
+                                                                                <label for="quantity">Quantity</label>
+                                                                                <input type="text" placeholder="0.00" class="record" id="quantity" name="quantity" required>
+                                                                                <label for="per-coin">Price Per Coin</label>
+                                                                                <input type="text" placeholder="$0.00" class="record" id="per-coin" name="per-coin" required>
+                                                                            </div>
+                                                                        </div>
+                                                                    <!-- User crypto record form -->
+        
+                                                                        <div class="row justify-content-center">                                                               
+                                                                                <div class="col-12">
+                                                                                    <input type="date" class="record" id="date" name="date" placeholder="Date" required>
+                                                                                    <input type="text" class="record" id="notes" name="notes" placeholder="Notes">
+                                                                                </div>
+                                                                        </div>
+                                                                    <!-- Users can add the date of purchase and add notes -->
+        
+                                                                        <div class="row justify-content-center">
+                                                                            <label for="total">Total Spent</label>
+                                                                            <input type="text" class="record" id="total" name="total" placeholder="$0.00" readonly>
+                                                                        </div>
+                                                                
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="user-button" data-dismiss="modal">Close</button>
+                                                                            <button type="submit" class="user-button" name="type" value="Buy">Add Transaction</button>
+                                                                        </div>
+                                                                    </form>
                                                                 </div>
-                                                            <!-- Users can add the date of purchase and add notes -->
 
-                                                                <div class="row justify-content-center">
-                                                                    <label for="total">Total Spent</label>
-                                                                    <input type="text" class="record" id="total" name="total" placeholder="$0.00" readonly>
+                                                                <!-- SELL -->
+                                                                <div class="tab-pane fade" id="sell-mobile" role="tabpanel" aria-labelledby="sell-tab">
+
+                                                                    <form method="POST" action="{{ url_for('add_record') }}">
+                                                                        <div class="row justify-content-center">
+                                                                            <div class="form-group">                                          
+                                                                                <select class="form-control record" id="coin_id" name="coin_id">
+                                                                                    <option disabled selected>Select Coin</option>                                                                 
+                                                                                {% for obj in names %}                                                                
+                                                                                    <option>{{ obj.name }}</option>                                                                 
+                                                                                {% endfor %}
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    <!-- Change each option out for a single one that automatcically adds them -->
+                                                                    
+                                                                        <div class="row justify-content-center">
+                                                                            <div class="col-12">
+                                                                                <label for="quantity">Quantity</label>
+                                                                                <input type="text" placeholder="0.00" class="record" id="quantity" name="quantity" required>
+                                                                                <label for="per-coin">Price Per Coin</label>
+                                                                                <input type="text" placeholder="$0.00" class="record" id="per-coin" name="per-coin" required>
+                                                                            </div>
+                                                                        </div>
+                                                                    <!-- User crypto record form -->
+        
+                                                                        <div class="row justify-content-center">                                                               
+                                                                                <div class="col-12">
+                                                                                    <input type="date" class="record" id="date" name="date" placeholder="Date" required>
+                                                                                    <input type="text" class="record" id="notes" name="notes" placeholder="Notes">
+                                                                                </div>
+                                                                        </div>
+                                                                    <!-- Users can add the date of purchase and add notes -->
+        
+                                                                        <div class="row justify-content-center">
+                                                                            <label for="total">Total Return</label>
+                                                                            <input type="text" class="record" id="total" name="total" placeholder="$0.00" readonly>
+                                                                        </div>
+                                                                
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="user-button" data-dismiss="modal">Close</button>
+                                                                            <button type="submit" class="user-button" name="type" value="Sell">Add Transaction</button>
+                                                                        </div>
+                                                                    </form>
                                                                 </div>
+
+                                                                <!-- STAKING -->
+                                                                <div class="tab-pane fade" id="staking-mobile" role="tabpanel" aria-labelledby="staking-tab">
+
+                                                                    
+                                                                    <form method="POST" action="{{ url_for('add_record') }}">
+                                                                        <div class="row justify-content-center">
+                                                                               
+                                                                            <div class="form-group">                                          
+                                                                                <select class="form-control record" id="coin_id" name="coin_id">
+                                                                                    <option disabled selected>Select Coin</option>                                                                 
+                                                                                {% for obj in names %}                                                                
+                                                                                    <option>{{ obj.name }}</option>                                                                 
+                                                                                {% endfor %}
+                                                                                </select>                                                                                   
+                                                                            </div>
+                                                                           <!-- Change each option out for a single one that automatcically adds them -->                                                                          
+
+                                                                            <div class="row justify-content-center">
+                                                                                <div class="col-12">
+                                                                                    <label for="quantity">Quantity</label>
+                                                                                    <input type="text" placeholder="0.00" class="record" id="quantity" name="quantity" required>
+                                                                                    <input type="hidden" placeholder="$0.00" class="record" id="per-coin" name="per-coin" value="0">
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- User crypto record form -->
+                
+                                                                            <div class="row justify-content-center">                                                               
+                                                                                    <div class="col-12">
+                                                                                        <input type="date" class="record" id="date" name="date" placeholder="Date" required>
+                                                                                        <input type="text" class="record" id="notes" name="notes" placeholder="Notes">
+                                                                                    </div>
+                                                                            </div>
+                                                                            <!-- Users can add the date of purchase and add notes -->
+                                                                        
+                                                                            <input type="hidden" class="record" id="total" name="total" value="0" placeholder="$0.00">
+                                                                                
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="user-button" data-dismiss="modal">Close</button>
+                                                                            <button type="submit" class="user-button" name="type" value="Staking">Add Transaction</button>
+                                                                        </div>
+                                                                    </form>                                                            
+                                                                </div>                                                              
+                                                            </div>
+                                                            <!-- https://getbootstrap.com/docs/4.5/components/navs/#tab TabPills -->
+                                                        </div>
                                                             
-                                                        
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">Add Transaction</button>
-                                                                </div>
-                                                            </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -441,7 +542,7 @@
                                                                                 <button type="button" class="action-button" data-toggle="modal" data-target="#edit-modal"><i class="fas fa-edit"></i></button>
                                                                                 <!-- Button trigger modal -->
                                                                                 
-                                                                                <!-- Modal -->
+                                                                                <!-- Edit Modal  -->
                                                                                 <div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="edit" aria-hidden="true">
                                                                                     <div class="modal-dialog modal-dialog-centered">
                                                                                         <div class="modal-content">
@@ -581,7 +682,57 @@
                                                                                 <td>13/11/2021</td>
                                                                                 <td>ADA Purchase</td>
                                                                                 <td>
-                                                                                    <button type="button" class="action-button" data-toggle="modal" data-target="#transaction-modal-mobile"><i class="fas fa-edit"></i></button>
+                                                                                    <button type="button" class="action-button" data-toggle="modal" data-target="#edit-mobile"><i class="fas fa-edit"></i></button>
+                                                                                <!-- Button trigger modal -->
+                                                                                
+                                                                                    <!-- Edit Modal Mobile  -->
+                                                                                    <div class="modal fade" id="edit-mobile" tabindex="-1" aria-labelledby="edit" aria-hidden="true">
+                                                                                        <div class="modal-dialog modal-dialog-centered">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="edit">Edit Transaction</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    
+                                                                                                    <!-- EDIT -->
+                                                                                                    <form method="POST" action="{{ url_for('add_record') }}">
+                                                                                                                                <!-- Update to edit function -->
+                                                                                                            
+                                                                                                        <div class="row justify-content-center">
+                                                                                                            <div class="col-12">
+                                                                                                                <label for="quantity">Quantity</label>
+                                                                                                                <input type="text" placeholder="0.00" class="record" id="quantity" name="quantity" required>
+                                                                                                                <label for="per-coin">Price Per Coin</label>
+                                                                                                                <input type="text" placeholder="$0.00" class="record" id="per-coin" name="per-coin" required>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    <!-- User crypto record form -->
+                                        
+                                                                                                        <div class="row justify-content-center">                                                               
+                                                                                                                <div class="col-12">
+                                                                                                                    <input type="date" class="record" id="date" name="date" placeholder="Date" required>
+                                                                                                                    <input type="text" class="record" id="notes" name="notes" placeholder="Notes">
+                                                                                                                </div>
+                                                                                                        </div>
+                                                                                                    <!-- Users can add the date of purchase and add notes -->
+                                        
+                                                                                                        <div class="row justify-content-center">
+                                                                                                            <label for="total">Total Spent</label>
+                                                                                                            <input type="text" class="record" id="total" name="total" placeholder="$0.00" readonly>
+                                                                                                        </div>
+                                                                                                
+                                                                                                        <div class="modal-footer">
+                                                                                                            <button type="button" class="user-button" data-dismiss="modal">Close</button>
+                                                                                                            <button type="submit" class="user-button" name="type" value="Edit">Edit Transaction???</button>
+                                                                                                        </div>
+                                                                                                    </form>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
                                                                                     <button type="button" class="action-button"><i class="far fa-trash-alt"></i></button>
                                                                                 </td>
                                                                                 <!-- EXAMPLE -->
