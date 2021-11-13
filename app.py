@@ -150,7 +150,6 @@ def add_record():
         quantity = request.form.get("quantity")
         per_coin = request.form.get("per-coin")
         total = float(quantity) * float(per_coin)
-        transfer = request.form.get("transfer")
         # price = 2
         # # PLACEHOLDER VALUE
         # value = float(price) * float(quantity)
@@ -180,7 +179,6 @@ def add_record():
             "date": request.form.get("date"),
             "notes": request.form.get("notes"),
             "total": float(total),
-            "transfer": transfer
         }
         mongo.db.cryptos.insert_one(records)
 
