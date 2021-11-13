@@ -242,6 +242,14 @@ h1{
     color: #FFAC5E;
     padding: 5px;
     margin: 1px;
+    background-color: #161b22;
+}
+
+.record-tab{
+    padding: 10px;
+    margin: 0px;
+    border-radius: 0px;
+
 }
 
 /* My Portfolio */
@@ -309,6 +317,9 @@ h1{
     .nav-tablet{
         display: none;
     }
+    .holdings-desktop{
+        display: none;
+    }
 
 }
 
@@ -328,15 +339,14 @@ h1{
     .nav-mobile{
         display: none;
     }
-
+    .holdings-mobile{
+        display: none;
+    }
 
 }
 
 @media screen and (max-width: 1023px){
     .crypto-desktop{
-        display: none;
-    }
-    .holdings-desktop{
         display: none;
     }
     .nav-desktop{
@@ -346,9 +356,6 @@ h1{
 
 @media screen and (min-width: 1023px){
     .crypto-mobile{
-        display: none;
-    }
-    .holdings-mobile{
         display: none;
     }
     .nav-tablet{

@@ -373,6 +373,13 @@ Additions:
 - Added Records modal desktop
 - Mobile transaction modal works
 
+### 6.35 Transaction modal tabs added with functional buy order
+
+Additions:
+
+- Changed button group for tranaction modal to a tab list
+- Buy order tab complete successful post
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
