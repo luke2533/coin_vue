@@ -378,7 +378,19 @@ Additions:
 Additions:
 
 - Changed button group for tranaction modal to a tab list
-- Buy order tab complete successful post
+- Buy order tab complete successful POST
+
+### 6.36 Sell and staking tabs POST to MongoDB and transfer tab issues
+
+Additions:
+
+- Sell order tab complete successful POST
+- Staking order tab complete successful POST
+- Transfer order tab progress
+
+Issue #4 - Each tab the div is still present although its contents are hidden pushing down the user selected tab
+
+Issue #5 - When the transfer tab is selected either the previous tab remains visable or nothing
 
 ## 7.0 Deployment
 
