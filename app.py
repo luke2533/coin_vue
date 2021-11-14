@@ -46,6 +46,8 @@ def portfolio():
 
     record = mongo.db.cryptos.find_one({"_id": ObjectId()})
 
+    delete = mongo.db.cryptos.delete_one({"_id": ObjectId()})
+
     if session["user"] == username:
         user_record = mongo.db.cryptos.find({"username": session["user"]}).sort("date", -1)
     
@@ -54,7 +56,7 @@ def portfolio():
         price["quote"]["USD"]["percent_change_24h"] = "{}%".format(price["quote"]["USD"]["percent_change_24h"])
 
     if session["user"]:
-        return render_template("portfolio.html", username=username, names=names, prices=prices, record=record, user_record=user_record)
+        return render_template("portfolio.html", username=username, names=names, prices=prices, record=record, user_record=user_record, delete=delete)
 
 
 
@@ -275,7 +277,7 @@ def get_record():
     return render_template(("portfolio.html"), username=username)
 
 
-# Edit
+# EDIT
 @app.route("/edit_record/<record_id>", methods=["GET", "POST"])
 def edit_record(record_id):
     if request.method == "POST":
@@ -301,6 +303,19 @@ def edit_record(record_id):
     record = mongo.db.cryptos.find_one({"_id": ObjectId(record_id)})
     return render_template("portfolio.html", record=record)
     # Code institute task manager edit
+
+
+# DELETE
+@app.route("/delete_record/<record_id>")
+def delete_record(record_id):
+    if request.method == "POST":
+        
+        mongo.db.cryptos.delete_one({"_id": ObjectId(record_id)})
+        flash("Record Successfully Deleted")
+        return redirect(url_for("portfolio"))
+
+    delete = mongo.db.cryptos.find_one({"_id": ObjectId(record_id)})
+    return render_template("portfolio.html", delete=delete)
 
 
 if __name__ == "__main__":

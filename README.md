@@ -426,6 +426,12 @@ Additions:
 - Returns records that a specific to the user
 - Sorts the records by most recent date 
 
+### 6.42 
+
+Additions:
+
+- 
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
