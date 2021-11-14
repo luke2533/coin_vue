@@ -413,6 +413,12 @@ Additions:
 - app.py changes to how buy, sell and transfer orders are recorded into the portfolio
 - edit_record progress not yet functional
 
+### 6.40 Displays records to record modal desktop but not user specific ones
+
+Additions: 
+
+- Displays records to record modal desktop but not user specific ones
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

@@ -521,6 +521,8 @@
                                                                 <table>
                                                                     <thead>
                                                                         <tr>
+                                                                            <th>Username</th>
+                                                                            <th>Coin Name</th>
                                                                             <th>Type</th>
                                                                             <th>Price</th>
                                                                             <th>Quantity</th>
@@ -531,69 +533,73 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>
-                                                                            <td>Buy</td>
-                                                                            <td>2.00</td>
-                                                                            <td>12.50</td>
-                                                                            <td>25.00</td>
-                                                                            <td>13/11/2021</td>
-                                                                            <td>ADA Purchase</td>
-                                                                            <td>
-                                                                                <button type="button" class="action-button" data-toggle="modal" data-target="#edit-modal"><i class="fas fa-edit"></i></button>
-                                                                                <!-- Button trigger modal -->
-                                                                                
-                                                                                <!-- Edit Modal  -->
-                                                                                <div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="edit" aria-hidden="true">
-                                                                                    <div class="modal-dialog modal-dialog-centered">
-                                                                                        <div class="modal-content">
-                                                                                            <div class="modal-header">
-                                                                                                <h5 class="modal-title" id="edit">Edit Transaction</h5>
-                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                                    <span aria-hidden="true">&times;</span>
-                                                                                                </button>
-                                                                                            </div>
-                                                                                            <div class="modal-body">
-                                                                                                
-                                                                                                <!-- EDIT -->
-                                                                                                <form method="POST" action="{{ url_for('edit_record') }}">
-                                                                                                                            <!-- Update to edit function -->
-                                                                                                          
-                                                                                                    <div class="row justify-content-center">
-                                                                                                        <div class="col-12">
-                                                                                                            <label for="quantity">Quantity</label>
-                                                                                                            <input type="text" placeholder="0.00" class="record" id="quantity" name="quantity_edit" required>
-                                                                                                            <label for="per_coin">Price Per Coin</label>
-                                                                                                            <input type="text" placeholder="$0.00" class="record" id="per_coin" name="per_coin_edit" required>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                <!-- User crypto record form -->
-                                    
-                                                                                                    <div class="row justify-content-center">                                                               
+                                                                        {% for obj in user_record %}
+                                                                            <tr>                    
+                                                                                <td>{{ obj.username }}</td>                     
+                                                                                <td>{{ obj.coin_id }}</td>
+                                                                                <!-- Above is just for testing remove username and coin_id -->
+                                                                                <td>{{ obj.type }}</td>
+                                                                                <td>{{ obj.per_coin }}</td>
+                                                                                <td>{{ obj.quantity }}</td>
+                                                                                <td>{{ obj.total }}</td>
+                                                                                <td>{{ obj.date }}</td>
+                                                                                <td>{{ obj.notes }}</td>
+                                                                                <td>
+                                                                                    <button type="button" class="action-button" data-toggle="modal" data-target="#edit-modal"><i class="fas fa-edit"></i></button>
+                                                                                    <!-- Button trigger modal -->
+                                                                                    
+                                                                                    <!-- Edit Modal  -->
+                                                                                    <div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="edit" aria-hidden="true">
+                                                                                        <div class="modal-dialog modal-dialog-centered">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="edit">Edit Transaction</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    
+                                                                                                    <!-- EDIT -->
+                                                                                                    <form method="POST" action="{{ url_for('edit_record', record_id=record._id) }}">
+                                                                                                                                <!-- Update to edit function -->
+                                                                                                            
+                                                                                                        <div class="row justify-content-center">
                                                                                                             <div class="col-12">
-                                                                                                                <input type="date" class="record" id="date" name="date_edit" placeholder="Date" required>
-                                                                                                                <input type="text" class="record" id="notes" name="notes_edit" placeholder="Notes">
+                                                                                                                <label for="quantity">Quantity</label>
+                                                                                                                <input type="text" placeholder="0.00" class="record" id="quantity" name="quantity_edit" required>
+                                                                                                                <label for="per_coin">Price Per Coin</label>
+                                                                                                                <input type="text" placeholder="$0.00" class="record" id="per_coin" name="per_coin_edit" required>
                                                                                                             </div>
-                                                                                                    </div>
-                                                                                                <!-- Users can add the date of purchase and add notes -->
-                                    
-                                                                                                    <div class="row justify-content-center">
-                                                                                                        <label for="total">Total Spent</label>
-                                                                                                        <input type="text" class="record" id="total" name="total" placeholder="$0.00" readonly>
-                                                                                                    </div>
-                                                                                            
-                                                                                                    <div class="modal-footer">
-                                                                                                        <button type="button" class="user-button" data-dismiss="modal">Close</button>
-                                                                                                        <button type="submit" class="user-button" name="type" value="Edit">Edit Transaction???</button>
-                                                                                                    </div>
-                                                                                                </form>
+                                                                                                        </div>
+                                                                                                    <!-- User crypto record form -->
+                                        
+                                                                                                        <div class="row justify-content-center">                                                               
+                                                                                                                <div class="col-12">
+                                                                                                                    <input type="date" class="record" id="date" name="date_edit" placeholder="Date" required>
+                                                                                                                    <input type="text" class="record" id="notes" name="notes_edit" placeholder="Notes">
+                                                                                                                </div>
+                                                                                                        </div>
+                                                                                                    <!-- Users can add the date of purchase and add notes -->
+                                        
+                                                                                                        <div class="row justify-content-center">
+                                                                                                            <label for="total">Total Spent</label>
+                                                                                                            <input type="text" class="record" id="total" name="total_edit" placeholder="$0.00" readonly>
+                                                                                                        </div>
+                                                                                                
+                                                                                                        <div class="modal-footer">
+                                                                                                            <button type="button" class="user-button" data-dismiss="modal">Close</button>
+                                                                                                            <button type="submit" class="user-button" name="type" value="Edit">Edit Transaction???</button>
+                                                                                                        </div>
+                                                                                                    </form>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <button type="button" class="action-button"><i class="far fa-trash-alt"></i></button>
-                                                                            </td>
-                                                                            <!-- EXAMPLE -->
-                                                                        </tr>
+                                                                                    <button type="button" class="action-button"><i class="far fa-trash-alt"></i></button>
+                                                                                </td>
+                                                                            </tr>                          
+                                                                        {% endfor %}
                                                                     </tbody>
                                                                 </table>
                                                             </div>

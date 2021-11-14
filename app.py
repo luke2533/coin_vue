@@ -44,12 +44,17 @@ def portfolio():
 
     prices = crypto.get_price()
 
+    record = mongo.db.cryptos.find_one({"_id": ObjectId()})
+
+    if session["user"] == username:
+        user_record = mongo.db.cryptos.find()
+    
     for price in prices:
         price["quote"]["USD"]["price"] = "$" + "{:.4f}".format(price["quote"]["USD"]["price"])
         price["quote"]["USD"]["percent_change_24h"] = "{}%".format(price["quote"]["USD"]["percent_change_24h"])
 
     if session["user"]:
-        return render_template("portfolio.html", username=username, names=names, prices=prices)
+        return render_template("portfolio.html", username=username, names=names, prices=prices, record=record, user_record=user_record)
 
 
 
@@ -148,26 +153,26 @@ def add_record():
 
         type = request.form.get("type")
         quantity = request.form.get("quantity")
-        per_coin = request.form.get("per-coin")
+        per_coin = request.form.get("per_coin")
         total = float(quantity) * float(per_coin)
-        price = 2
+        # price = 2
         # PLACEHOLDER VALUE
-        value = float(price) * float(holdings)
-        profit_loss = float(value) - float(total)
+        # value = float(price) * float(holdings)
+        # profit_loss = float(value) - float(total)
         coin_id = request.form.get("coin_id")
-        coin_id_exists = False
-        coin_id_object = {}
-        get_coins = mongo.db.portfolios.find(
-            {"username": session["user"]}
-        )
+        # coin_id_exists = False
+        # coin_id_object = {}
+        # get_coins = mongo.db.portfolios.find(
+        #     {"username": session["user"]}
+        # )
         # Finds all of the portfolios and matches the username to the user
 
-        for get_coin in get_coins:
-            for token in get_coin.get("id"):
-                # Loops through the array for the "token" that matches the coin_id
-                if token.get("coin_id") == coin_id:
-                    coin_id_exists = True
-                    coin_id_object = token
+        # for get_coin in get_coins:
+        #     for token in get_coin.get("id"):
+        #         # Loops through the array for the "token" that matches the coin_id
+        #         if token.get("coin_id") == coin_id:
+        #             coin_id_exists = True
+        #             coin_id_object = token
                     # If there is a match my_portfolios fills crypto_id_object with the data
 
         records = {
@@ -182,76 +187,76 @@ def add_record():
         }
         mongo.db.cryptos.insert_one(records)
 
-        find_portfolio = mongo.db.portfolios.find_one(
-            {"username": session["user"]})["username"]
+        # find_portfolio = mongo.db.portfolios.find_one(
+        #     {"username": session["user"]})["username"]
             # Finds username that matches the current users account
 
-        if find_portfolio == username and coin_id_exists == True:
+        # if find_portfolio == username and coin_id_exists == True:
 
-            updated_holdings = float(quantity) + float(coin_id_object.get("holdings"))
-            updated_value = float(price) * float(coin_id_object.get("holdings"))
-            # Might need help with this bit
-            updated_total = float(total) + float(coin_id_object.get("grand_total"))
-            updated_profit = float(coin_id_object.get("value")) - float(coin_id_object.get("grand_total"))
+        #     updated_holdings = float(quantity) + float(coin_id_object.get("holdings"))
+        #     updated_value = float(price) * float(coin_id_object.get("holdings"))
+        #     # Might need help with this bit
+        #     updated_total = float(total) + float(coin_id_object.get("grand_total"))
+        #     updated_profit = float(coin_id_object.get("value")) - float(coin_id_object.get("grand_total"))
             
-            # delete by old portfolio and append the new information into the array then insert the entire new object
-            if type == "Buy" or type == "Staking":
-                my_portfolios = {
-                    "username": session["user"],
-                    "id": [{
-                        "coin_id": coin_id,
-                        "holdings": updated_holdings,
-                        "value": updated_value,
-                        "grand_total": updated_total,
-                        "profit_loss": updated_profit
-                    }]
-                }
-                mongo.db.portfolios.update_one(my_portfolios)
+        #     # delete by old portfolio and append the new information into the array then insert the entire new object
+        #     if type == "Buy" or type == "Staking":
+        #         my_portfolios = {
+        #             "username": session["user"],
+        #             "id": [{
+        #                 "coin_id": coin_id,
+        #                 "holdings": updated_holdings,
+        #                 "value": updated_value,
+        #                 "grand_total": updated_total,
+        #                 "profit_loss": updated_profit
+        #             }]
+        #         }
+        #         mongo.db.portfolios.update_one(my_portfolios)
                 
-            elif type == "Sell":
-                sell_holdings = float(coin_id_object.get("holdings")) - float(quantity)
-                sell_total = float(coin_id_object.get("grand_total")) - float(coin_id_object.get("value"))
+        #     elif type == "Sell":
+        #         sell_holdings = float(coin_id_object.get("holdings")) - float(quantity)
+        #         sell_total = float(coin_id_object.get("grand_total")) - float(coin_id_object.get("value"))
 
-                my_portfolios = {
-                    "username": session["user"],
-                    "id": [{
-                        "coin_id": coin_id,
-                        "holdings": sell_holdings,
-                        "value": updated_value,
-                        "grand_total": sell_total,
-                        "profit_loss": updated_profit
-                    }]
-                }
-                mongo.db.portfolios.update_one(my_portfolios)
-            # If the username and coin_id match a record in the portfolios collection it adds the users new data
+        #         my_portfolios = {
+        #             "username": session["user"],
+        #             "id": [{
+        #                 "coin_id": coin_id,
+        #                 "holdings": sell_holdings,
+        #                 "value": updated_value,
+        #                 "grand_total": sell_total,
+        #                 "profit_loss": updated_profit
+        #             }]
+        #         }
+        #         mongo.db.portfolios.update_one(my_portfolios)
+        #     # If the username and coin_id match a record in the portfolios collection it adds the users new data
 
-        elif find_portfolio == username and coin_id_exists == False:
-            my_portfolios = {
-                "username": session["user"],
-                "id": [{
-                    "coin_id": coin_id,
-                    "holdings": quantity,
-                    "value": value,
-                    "grand_total": total,
-                    "profit_loss": profit_loss
-                }]
-            }
-            mongo.db.portfolios.update_many(my_portfolios)
-            # NEED TO FIGURE OUT HOW TO ADD A NEW ID IN THE ARRAY
-            # If the username matches but coin_id does not then it creates a new array within ID
+        # elif find_portfolio == username and coin_id_exists == False:
+        #     my_portfolios = {
+        #         "username": session["user"],
+        #         "id": [{
+        #             "coin_id": coin_id,
+        #             "holdings": quantity,
+        #             "value": value,
+        #             "grand_total": total,
+        #             "profit_loss": profit_loss
+        #         }]
+        #     }
+        #     mongo.db.portfolios.update_many(my_portfolios)
+        #     # NEED TO FIGURE OUT HOW TO ADD A NEW ID IN THE ARRAY
+        #     # If the username matches but coin_id does not then it creates a new array within ID
 
-        else:
-            my_portfolios = {
-                "username": session["user"],
-                "id": [{
-                    "coin_id": coin_id,
-                    "holdings": quantity,
-                    "value": value,
-                    "grand_total": total,
-                    "profit_loss": profit_loss
-                }]
-            }
-            mongo.db.portfolios.insert_one(my_portfolios)
+        # else:
+        #     my_portfolios = {
+        #         "username": session["user"],
+        #         "id": [{
+        #             "coin_id": coin_id,
+        #             "holdings": quantity,
+        #             "value": value,
+        #             "grand_total": total,
+        #             "profit_loss": profit_loss
+        #         }]
+        #     }
+        #     mongo.db.portfolios.insert_one(my_portfolios)
             # If the username and coin_id does not then it creates a new record / new portfolio
 
         flash("Crypto Successfuly Added")
@@ -275,6 +280,7 @@ def get_record():
 def edit_record(record_id):
     if request.method == "POST":
 
+        coin_id_example = "Bitcoin"
         quantity_edit = request.form.get("quantity_edit")
         per_coin_edit = request.form.get("per_coin_edit")
         total_edit = float(quantity_edit) + float(per_coin_edit)
@@ -282,7 +288,7 @@ def edit_record(record_id):
         update_record = {
             "username": session["user"],
             "type": type,
-            "coin_id": coin_id,
+            "coin_id": coin_id_example,
             "quantity": float(quantity_edit),
             "per_coin": float(per_coin_edit),
             "date": request.form.get("date_edit"),
@@ -290,10 +296,11 @@ def edit_record(record_id):
             "total": float(total_edit)
         }
         mongo.db.cryptos.update({"_id": ObjectId(record_id)}, update_record)
+        flash("Record Succesfully Updated")
     
     record = mongo.db.cryptos.find_one({"_id": ObjectId(record_id)})
     return render_template("portfolio.html", record=record)
-    # Code institute task manager edit 
+    # Code institute task manager edit
 
 
 if __name__ == "__main__":
