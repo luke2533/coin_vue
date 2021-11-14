@@ -406,6 +406,13 @@ Additions:
 - Mobile Edit modal works on smaller devices
 - Removed desktop edit button from portfolio section
 
+### 6.39 app.py updates to add_record and edit_record
+
+Additions:
+
+- app.py changes to how buy, sell and transfer orders are recorded into the portfolio
+- edit_record progress not yet functional
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
