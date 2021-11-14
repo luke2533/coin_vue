@@ -47,7 +47,7 @@ def portfolio():
     record = mongo.db.cryptos.find_one({"_id": ObjectId()})
 
     if session["user"] == username:
-        user_record = mongo.db.cryptos.find()
+        user_record = mongo.db.cryptos.find({"username": session["user"]}).sort("date", -1)
     
     for price in prices:
         price["quote"]["USD"]["price"] = "$" + "{:.4f}".format(price["quote"]["USD"]["price"])

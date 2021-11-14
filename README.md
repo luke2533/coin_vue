@@ -419,6 +419,13 @@ Additions:
 
 - Displays records to record modal desktop but not user specific ones
 
+### 6.41 Returns user specific records in most recent date order
+
+Additions:
+
+- Returns records that a specific to the user
+- Sorts the records by most recent date 
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
