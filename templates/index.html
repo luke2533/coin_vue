@@ -6,9 +6,17 @@
 
     <div class="container-fluid">
         <div class="row justify-content-center crypto-desktop">
+            
             <div class="col-9">
                 <h1>CoinVue</h1>
-                <h3>Displaying the latest Crypto prices</h3>
+                <h3>Displaying the latest top 50 crypto data</h3>
+                <div class="col-8" style="padding: 0px;">
+                    <p>CoinVue is a cryptocurrency tracking platform with the latest data on the top 50 coins price movements. 
+                        As well as a tool for tracking porfolios performance with a chart showing the historical value, 
+                        invested cost and diffrence of the users assets. Buy, sell and staking rewards can be recorded to
+                        the portfolio updating the chart and its total value.
+                    </p>
+                </div>
                 {% if session.user %}
                 {% else %}
                     <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up here</a></p>
@@ -52,7 +60,18 @@
         <div class="row justify-content-center crypto-mobile">
             <div class="col-12">
                 <h1>CoinVue</h1>
-                <h3>Displaying the latest Crypto prices</h3>
+                <h3>Displaying the latest top 50 crypto data</h3>
+                <div class="col-12" style="padding: 0px;">
+                    <p style="font-size: 15px;">CoinVue is a cryptocurrency tracking platform with the latest data on the top 50 coins price movements. 
+                        As well as a tool for tracking porfolios performance with a chart showing the historical value, 
+                        invested cost and diffrence of the users assets. Buy, sell and staking rewards can be recorded to
+                        the portfolio updating the chart and its total value.
+                    </p>
+                </div>
+                {% if session.user %}
+                {% else %}
+                    <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up here</a></p>
+                {% endif %}
     
                 <table class="table table-striped">
                     <thead class="thead-dark">

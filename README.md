@@ -426,11 +426,15 @@ Additions:
 - Returns records that a specific to the user
 - Sorts the records by most recent date 
 
-### 6.42 
+### 6.42 Home page improvements on desktop and mobile as well as delete button issues 
 
 Additions:
 
-- 
+- Added home page sign up link to mobile
+- Added home page description of CoinVue desktop and mobile
+- Delete button issue
+
+Issue #5 - Delete button links to page that doesn't exist due to record_id not being regonised
 
 ## 7.0 Deployment
 
