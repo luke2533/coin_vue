@@ -2,16 +2,7 @@
 {% block content %}
 
     <section>
-        <!-- {% for record in records %}
-            {{ record.username }}<br>
-            {{ record.name }}<br>
-            {{ record.quantity }}<br>
-            {{ record.per-coin }}<br>
-            {{ record.date }}<br>
-            {{ record.notes }}<br>
-            {{ record.total }}<br>
-        {% endfor %}  -->
-        
+
 <!-- Portfolio Desktop -->
 
         <div class="containter-fluid">
@@ -478,6 +469,8 @@
                     <table class="table table-striped portfolio-table">
                         <thead>
                             <tr>
+                                <th scope="col">TEST USER</th>
+                                <!-- DELETE THIS ONE -->
                                 <th scope="col">Name</th>
                                 <!-- Mongo DB Name -->
                                 <th scope="col">Price</th>
@@ -495,15 +488,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- {,% for portfolio in my_portfolios %,} -->
+                            {% for record in portfolios %}
                                 {% for obj in prices %}
                                     <tr>
-                                        <td></td>
+                                        <td>{{ record.username }}</td>
+                                        <td>{{ record.coin_id }}</td>
                                         <td>{{ obj.quote.USD.price }}</td>
                                         <td>{{ obj.quote.USD.percent_change_24h }}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ record.holdings}}</td>
+                                        <td>{{ record.value }}</td>
+                                        <td>{{ record.profit_loss }}</td>
                                         <td>
                                             <button type="button" class="action-button" data-toggle="modal" data-target="#record-modal"><i class="fas fa-ellipsis-v"></i></button>
                                             <!-- ADD THE RECORD MODAL HERE -->
@@ -643,7 +637,7 @@
                                         </td>
                                     </tr>
                                 {% endfor %}
-                            <!-- {,% endfor %,} -->
+                            {% endfor %}
                             
                         </tbody>
                     </table>       

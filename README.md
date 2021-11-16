@@ -426,7 +426,13 @@ Additions:
 - Returns records that a specific to the user
 - Sorts the records by most recent date 
 
-### 6.42 Home page improvements on desktop and mobile as well as delete button issues 
+### 6.42 Heroku test
+
+Additions:
+
+-  Deployed to heroku
+
+### 6.43 Home page improvements on desktop and mobile as well as delete button issues 
 
 Additions:
 
@@ -435,6 +441,13 @@ Additions:
 - Delete button issue
 
 Issue #5 - Delete button links to page that doesn't exist due to record_id not being regonised
+
+### 6.44 Portfolio displays but not the individual coins, holdings, value, etc
+
+Additions:
+
+- Improvements to portfolio functionalty
+- Portfolio page displays the porfolio but not the individual coins, holdings, value, etc
 
 ## 7.0 Deployment
 

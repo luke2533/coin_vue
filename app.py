@@ -41,22 +41,31 @@ def portfolio():
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     names = crypto.get_name()
+    # Crypto names used in transaction forms
 
     prices = crypto.get_price()
+    # Displays the prices of users portfolio coins
 
     record = mongo.db.cryptos.find_one({"_id": ObjectId()})
+    # Finds the record id
 
     delete = mongo.db.cryptos.delete_one({"_id": ObjectId()})
+    # Deletes records from users portfolio
 
     if session["user"] == username:
         user_record = mongo.db.cryptos.find({"username": session["user"]}).sort("date", -1)
+    # Displays the users record history
+
+    if session["user"] == username:
+        portfolios = mongo.db.portfolios.find({"username": session["user"], "id": {}})
+    # Displays the users portfolio
     
     for price in prices:
         price["quote"]["USD"]["price"] = "$" + "{:.4f}".format(price["quote"]["USD"]["price"])
         price["quote"]["USD"]["percent_change_24h"] = "{}%".format(price["quote"]["USD"]["percent_change_24h"])
 
     if session["user"]:
-        return render_template("portfolio.html", username=username, names=names, prices=prices, record=record, user_record=user_record, delete=delete)
+        return render_template("portfolio.html", username=username, names=names, prices=prices, record=record, user_record=user_record, delete=delete, portfolios=portfolios)
 
 
 
@@ -160,7 +169,7 @@ def add_record():
         price = 2
         # PLACEHOLDER VALUE
         value = float(price) * float(quantity)
-        # value = float(price) * float(holdings)
+        # value = float(price) * float(holdings) is wrong
         profit_loss = float(value) - float(total)
         coin_id = request.form.get("coin_id")
         coin_id_exists = False
@@ -168,6 +177,7 @@ def add_record():
         get_coins = mongo.db.portfolios.find(
             {"username": session["user"]}
         )
+        filter = {"coin_id": coin_id}
         # Finds all of the portfolios and matches the username to the user
 
         for get_coin in get_coins:
@@ -189,66 +199,14 @@ def add_record():
             "total": float(total)
         }
         mongo.db.cryptos.insert_one(records)
-
+        
+        no_portfolio = None
         find_portfolio = mongo.db.portfolios.find_one(
             {"username": session["user"]})["username"]
          #   Finds username that matches the current users account
 
-        if find_portfolio == username and coin_id_exists == True:
-
-            updated_holdings = float(quantity) + float(coin_id_object.get("holdings"))
-            updated_value = float(price) * float(coin_id_object.get("holdings"))
-            # Might need help with this bit
-            updated_total = float(total) + float(coin_id_object.get("grand_total"))
-            updated_profit = float(coin_id_object.get("value")) - float(coin_id_object.get("grand_total"))
+        if find_portfolio != username or find_portfolio == no_portfolio and coin_id_exists == False:
             
-            # delete by old portfolio and append the new information into the array then insert the entire new object
-            if type == "Buy" or type == "Staking":
-                my_portfolios = {
-                    "username": session["user"],
-                    "id": [{
-                        "coin_id": coin_id,
-                        "holdings": updated_holdings,
-                        "value": updated_value,
-                        "grand_total": updated_total,
-                        "profit_loss": updated_profit
-                    }]
-                }
-                mongo.db.portfolios.update_one(my_portfolios)
-                
-            elif type == "Sell":
-                sell_holdings = float(coin_id_object.get("holdings")) - float(quantity)
-                sell_total = float(coin_id_object.get("grand_total")) - float(coin_id_object.get("value"))
-
-                my_portfolios = {
-                    "username": session["user"],
-                    "id": [{
-                        "coin_id": coin_id,
-                        "holdings": sell_holdings,
-                        "value": updated_value,
-                        "grand_total": sell_total,
-                        "profit_loss": updated_profit
-                    }]
-                }
-                mongo.db.portfolios.update_one(my_portfolios)
-            # If the username and coin_id match a record in the portfolios collection it adds the users new data
-
-        elif find_portfolio == username and coin_id_exists == False:
-            my_portfolios = {
-                "username": session["user"],
-                "id": [{
-                    "coin_id": coin_id,
-                    "holdings": quantity,
-                    "value": value,
-                    "grand_total": total,
-                    "profit_loss": profit_loss
-                }]
-            }
-            mongo.db.portfolios.update_many(my_portfolios)
-            # NEED TO FIGURE OUT HOW TO ADD A NEW ID IN THE ARRAY
-            # If the username matches but coin_id does not then it creates a new array within ID
-
-        else:
             my_portfolios = {
                 "username": session["user"],
                 "id": [{
@@ -260,7 +218,60 @@ def add_record():
                 }]
             }
             mongo.db.portfolios.insert_one(my_portfolios)
-            # If the username and coin_id does not then it creates a new record / new portfolio
+            # If the username and coin_id don't match any documents then it creates a new one
+        
+        elif find_portfolio == username and coin_id_exists == False:
+            my_portfolios = {
+                {
+                    "coin_id": coin_id,
+                    "holdings": quantity,
+                    "value": value,
+                    "grand_total": total,
+                    "profit_loss": profit_loss
+                }
+            }
+            mongo.db.portfolios.update(filter, {"$push", {"id": my_portfolios}})
+            # NEED TO FIGURE OUT HOW TO ADD NEW ARRAY 
+            # If the username matches a document but is the first transaction of the coin it adds a new instance in the array
+
+        elif find_portfolio == username and coin_id_exists == True:
+
+            updated_holdings = float(quantity) + float(coin_id_object.get("holdings"))
+            updated_value = float(price) * float(coin_id_object.get("holdings"))
+            # Need to figure out how to get price
+            updated_total = float(total) + float(coin_id_object.get("grand_total"))
+            updated_profit = float(coin_id_object.get("value")) - float(coin_id_object.get("grand_total"))
+            # If both the username and the coin_id make a match then the new data is updated with the old records
+
+            if type == "Buy" or type == "Staking": 
+                my_portfolios = {
+                    "id": [{
+                        "coin_id": coin_id,
+                        "holdings": updated_holdings,
+                        "value": updated_value,
+                        "grand_total": updated_total,
+                        "profit_loss": updated_profit
+                    }]
+                }
+                mongo.db.portfolios.update_one(filter, {"$set", {"coin_id": my_portfolios}})
+                # Buy and stake orders update the the holdings and grand_total by adding the users new order to the records
+            
+            elif type == "Sell":
+
+                sell_holdings = float(coin_id_object.get("holdings")) - float(quantity)
+                sell_total = float(coin_id_object.get("grand_total")) - float(coin_id_object.get("value"))
+
+                my_portfolios = {
+                    "id": [{
+                        "coin_id": coin_id,
+                        "holdings": sell_holdings,
+                        "value": updated_value,
+                        "grand_total": sell_total,
+                        "profit_loss": updated_profit
+                    }]
+                }
+                mongo.db.portfolios.update_one(filter, {"$set", {"coin_id": my_portfolios}})
+                # Sell orders subtract the holdings from quantity and the total invested by the returns
 
         flash("Crypto Successfuly Added")
         return redirect(url_for("portfolio"))
@@ -307,7 +318,7 @@ def edit_record(record_id):
 
 
 # DELETE
-@app.route("/delete_record/<record_id>")
+@app.route("/delete_record/<record_id>", methods=["GET", "POST"])
 def delete_record(record_id):
     if request.method == "POST":
         
