@@ -100,43 +100,75 @@ Text will be in [Exo-2](https://fonts.google.com/specimen/Exo+2?query=exo+2):
 
 ### 2.4 Wireframes
 
-[Wireframe pdf]()
+[Wireframe pdf](static/wireframes/CoinVue.pdf)
 
 Home Desktop wireframe:
 
+![Home page desktop](static/wireframes/home-desktop.png)
+
 Home Tablet wireframe:
+
+![Home page tablet](static/wireframes/home-tablet.png)
 
 Home Mobile wireframe:
 
+![Home page mobile](static/wireframes/home-mobile.png)
+
 Portfolio Desktop wireframe:
+
+![Portfolio page desktop](static/wireframes/portfolio-desktop.png)
 
 Portfolio Tablet wireframe:
 
+![Portfolio page tablet](static/wireframes/portfolio-tablet.png)
+
 Portfolio Mobile wireframe:
+
+![Portfolio page mobile](static/wireframes/portfolio-mobile.png)
 
 Sign up Desktop wireframe:
 
+![Sign up page desktop](static/wireframes/signup-desktop.png)
+
 Sign up Tablet wireframe:
+
+![Sign up page tablet](static/wireframes/signup-tablet.png)
 
 Sign up Mobile wireframe:
 
+![Sign up page mobile](static/wireframes/signup-mobile.png)
+
 Log in Desktop wireframe:
+
+![Log in page desktop](static/wireframes/login-desktop.png)
 
 Log in Tablet wireframe:
 
+![Log in page tablet](static/wireframes/login-tablet.png)
+
 Log in Mobile wireframe:
+
+![Log in page mobile](static/wireframes/login-mobile.png)
+
+Transaction Modal Universal wireframe:
+
+![Transaction modal universal](static/wireframes/transaction-universal.png)
+
+Edit Modal Universal wireframe:
+
+![Edit modal universal](static/wireframes/edit-universal.png)
 
 Record Modal Desktop wireframe:
 
+![Record modal desktop](static/wireframes/record-desktop.png)
+
 Record Modal Mobile wireframe:
 
-Transaction Modal Desktop wireframe:
+![Record modal mobile](static/wireframes/record-mobile.png)
 
-Transaction Modal Mobile wireframe:
+Delete Modal Universal wireframe:
 
-Edit Modal Desktop wireframe:
-
-Edit Modal Mobile wireframe:
+![Delete modal universal](static/wireframes/delete-universal.png)
 
 ### 2.5 Mockups
 
@@ -166,17 +198,15 @@ Log in Tablet mockup:
 
 Log in Mobile mockup:
 
-Record Modal Desktop mockup:
+Transaction Modal Universal wireframe:
 
-Record Modal Mobile mockup:
+Edit Modal Universal wireframe:
 
-Transaction Modal Desktop mockup:
+Record Modal Desktop wireframe:
 
-Transaction Modal Mobile mockup:
+Record Modal Mobile wireframe:
 
-Edit Modal Desktop mockup:
-
-Edit Modal Mobile mockup:
+Delete Modal Universal wireframe:
 
 ## 3.0 Features
 
@@ -650,6 +680,29 @@ Test file Updates:
 - Record modal tests
 - Transaction modal tests
 - Edit modal tests
+
+### 6.50 Adding wireframe pdf and images to README
+
+Additions:
+
+- Wireframe pdf
+- home-desktop
+- home-tablet
+- home-mobile
+- portfolio-desktop
+- portfolio-tablet
+- portfolio-mobile
+- signup-desktop
+- signup-tablet
+- signup-mobile
+- login-desktop
+- login-tablet
+- login-mobile
+- transaction-universal
+- edit-universal
+- record-desktop
+- record-mobile
+- delete-universal
 
 ## 7.0 Deployment
 
