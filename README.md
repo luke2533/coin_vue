@@ -89,6 +89,7 @@ Text will be in [Exo-2](https://fonts.google.com/specimen/Exo+2?query=exo+2):
 - User icon (Log in page)
 - Edit icon (Delete modal)
 - Delete icon (Delete button)
+- Ellipsis vertical (Action button)
 
 ### 2.3 Colors
 
@@ -640,6 +641,15 @@ Test file Updates:
 - Home page tests
 - Log in page tests
 - Sign up page tests
+
+### 6.49 Test file updates 5.7 to 5.10
+
+Test file Updates:
+
+- Portfolio tests
+- Record modal tests
+- Transaction modal tests
+- Edit modal tests
 
 ## 7.0 Deployment
 
