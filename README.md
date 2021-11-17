@@ -236,6 +236,10 @@ Flask is used for HTML templates, URL routing making devlopement more efficient
 
 MongoDB is used as the database to store user accounts, portfolios and records
 
+### 4.9 CoinMarketCap API
+
+CoinMarketCap API is used to get the latest listings, price, price changes, market caps and 24 hour volume for the top 50 Cryptos
+
 ## 5.0 Testing
 
 [Click here for Testing document]()
@@ -608,16 +612,71 @@ README Updates:
 - Features left to implement
 - Technologies used
 
+### 6.47 Testing file added, README updates 7.0 Deployment and 8.0 Credits
+
+Additions:
+
+- testing.md file
+
+README Updates:
+
+- Local deployment
+- Github deployment
+- Heroku deployment
+- Content credits
+- Code credits
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
 
+This project was developed on GitPod.
+
+To devlop this project these steps where taken:
+
+1. Create a new repository on GitHub
+2. Click "GitPod" button on GitHub to create the work enviroment
+3. Create and work on files on GitPod
+4. Create .gitignore file to add files that should't be commited to GitHub
+5. Using GitPods terminal add, commit and push files to GitHub
+
 ### 7.2 GitHub page deployment
 
+To upload the project to GitHub pages these steps where taken:
+
+1. Go to coin_vue repository settings
+2. Scroll down to GitHub pages section
+3. Select the branch to be uploaded
+4. Select the folder and click save
+
+The project is then published to GitHub pages generating a link to the live website
+
 ### 7.3 Heroku deployment
+
+1. From Heroku's website sign in and click "New", "Create new app"
+2. Enter a app name "coin-vue" and region then click "Create app"
+3. Go to the settings then scroll to "Reaveal Config Vars" and enter the appropriate details from env.py file: "IP", "PORT", "SECRET_KEY", "MONGO_DBNAME", "MONGO_URI"
+4. To deploy GitHub to Heroku first create a Procfile using this command in the terminal: echo web: python app.py > Procfile
+5. Then create a requirments file that contains all of the relevant packages using the command: pip3 freeze --local > requirements.txt
+6. Go to the Deploy tab to search and connect the GitHub repository to Heroku
+7. Enable Automatic Deploys for automatic updates when code is commited to GitHub, select the branch and deploy to Heroku
 
 ## 8.0 Credits
 
 ### 8.1 Content
 
+- CoinVue Logo - [CoinVue](https://thumbs.dreamstime.com/b/blockchain-technology-icon-vector-block-chain-symbol-blockchain-technology-modern-icon-vector-block-chain-symbol-logo-element-106099068.jpg 
+)
+- Icons - [Font Awesome](https://fontawesome.com/)
+
 ### 8.2 Code
+
+- CoinMarketCap API display data index.html - [Python Flask Web Application Tutorial](https://blog.tati.digital/2020/11/30/python-flask-web-application-tutorial-2020-display-coinmarketcap-api-data/)
+- Bootstrap Nav-bar base.html - [Nav](https://getbootstrap.com/docs/4.5/components/navbar/)
+- Bootstrap Modals portfolio.html - [Modal](https://getbootstrap.com/docs/4.5/components/modal/)
+- Bootstrap Accordion portfolio.html - [Accordion](https://getbootstrap.com/docs/4.5/components/collapse/#accordion-example)
+- Bootstrap Dropdown portfolio.html - [Dropdown](https://getbootstrap.com/docs/4.5/components/dropdowns/)
+- Bootstrap Tab Pills portfolio.html - [Tab Pills](https://getbootstrap.com/docs/4.5/components/navs/#tab)
+- Code Insitute mini Flask project app file - [Code Insitute](https://learn.codeinstitute.net/dashboard)
+- CoinMarketCap documentation functions app file - [CoinMarketCap](https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyListingsLatest)
+
