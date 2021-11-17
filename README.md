@@ -626,6 +626,21 @@ README Updates:
 - Content credits
 - Code credits
 
+### 6.48 Test file updates 5.1 to 5.6 and changes to sign up page linking to portfolio
+
+Additions:
+
+- Changes to sign up page, when user is signed up it links them to portfolio page rather then sign up page
+
+Test file Updates:
+
+- Code validator tests
+- Nav-bar tests
+- Footer tests
+- Home page tests
+- Log in page tests
+- Sign up page tests
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment

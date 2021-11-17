@@ -102,6 +102,7 @@ def signup():
 
         session["user"] = request.form.get("username").lower()
         flash("Register complete")
+        return redirect(url_for("portfolio"))
     return render_template("signup.html")
 
 
