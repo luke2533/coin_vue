@@ -72,39 +72,173 @@ CoinVue’s target audience are crypto retail investors interested in live marke
 
 ### 2.1 Fonts
 
+Titles and subtitles will be in [Prompt](https://fonts.google.com/specimen/Prompt?query=prompt):
+
+Text will be in [Exo-2](https://fonts.google.com/specimen/Exo+2?query=exo+2):
+
 ### 2.2 Icons
+
+[Font awesome:](https://fontawesome.com/)
+
+- YouTube icon
+- Facebook icon
+- Instagram icon
+- Twitter icon
+- Home icon (Home page)
+- Coins icon (Portfolio page)
+- User icon (Log in page)
+- Edit icon (Delete modal)
+- Delete icon (Delete button)
 
 ### 2.3 Colors
 
+- #FFAC5E - Primary color for text
+- #161B22 - Nav and Footer background
+- #070A0F - Portfolio background color
+- #0D1117 - Background color
+
 ### 2.4 Wireframes
+
+[Wireframe pdf]()
+
+Home Desktop wireframe:
+
+Home Tablet wireframe:
+
+Home Mobile wireframe:
+
+Portfolio Desktop wireframe:
+
+Portfolio Tablet wireframe:
+
+Portfolio Mobile wireframe:
+
+Sign up Desktop wireframe:
+
+Sign up Tablet wireframe:
+
+Sign up Mobile wireframe:
+
+Log in Desktop wireframe:
+
+Log in Tablet wireframe:
+
+Log in Mobile wireframe:
+
+Record Modal Desktop wireframe:
+
+Record Modal Mobile wireframe:
+
+Transaction Modal Desktop wireframe:
+
+Transaction Modal Mobile wireframe:
+
+Edit Modal Desktop wireframe:
+
+Edit Modal Mobile wireframe:
 
 ### 2.5 Mockups
 
+[Mockup pdf]()
+
+Home Desktop mockup:
+
+Home Tablet mockup:
+
+Home Mobile mockup:
+
+Portfolio Desktop mockup:
+
+Portfolio Tablet mockup:
+
+Portfolio Mobile mockup:
+
+Sign up Desktop mockup:
+
+Sign up Tablet mockup:
+
+Sign up Mobile mockup:
+
+Log in Desktop mockup:
+
+Log in Tablet mockup:
+
+Log in Mobile mockup:
+
+Record Modal Desktop mockup:
+
+Record Modal Mobile mockup:
+
+Transaction Modal Desktop mockup:
+
+Transaction Modal Mobile mockup:
+
+Edit Modal Desktop mockup:
+
+Edit Modal Mobile mockup:
+
 ## 3.0 Features
 
-### 3.1 Exisiting features
+### 3.1 Existing features
+
+- Crypto price tracker - Home page with the top 50 cryptos
+- Personal portfolio - Users portfolio tracking the users transaction records
+- Sign up page - Personal user accounts
+- Log in / out - Log in and out to change accounts
+- Buy records - Buy transaction record for new purchases
+- Sell records - Sell transaction to keep track of profits
+- Staking rewards records - Rewards from passive income coins
+- ChartJS portfolio chart - Chart to track and visualize portfolio history
+- Edit records - Change pre existing records
+- Delete records - Permanently remove records
+- Updated portfolio performance - Updates changes in value when user reloads page
 
 ### 3.2 Features left to implement
+
+- Share portfolios - Users could view and share portfolios on discover page to better improve their trading stratergy 
+- Public and private portfolios - Users could have option to share or private there portfolios
+- Add transfer records - Crypto sent to or from others could be recorded 
+- Change password - Users could change their password if they forgot or wanted to make it more secure
+- Search bar for assets - Search bar to better filter down cryptocurrencies
+- Crypto info page - Pages for each crypto with further information on them
 
 ## 4.0 Technologies used
 
 ### 4.1 HTML5
 
+HTML5 used to structure the websites information
+
 ### 4.2 CSS3
+
+CSS3 used to style, structure and responsive on all devices
 
 ### 4.3 Bootstrap 4.5
 
+CSS libary with pre-existing class and id's to speed up development
+
 ### 4.4 JavaScript
+
+JavaScript makes this project interactable for users
 
 ### 4.5 jQuery
 
+jQuery used to shortan JS being written and for bootstrap elements such as modals, accordians and dropdown menus
+
 ### 4.6 Python 3
+
+Python is used for backend functionality between user, website and mongoDB.
 
 ### 4.7 Flask
 
+Flask is used for HTML templates, URL routing making devlopement more efficient
+
 ### 4.8 MongoDB
 
+MongoDB is used as the database to store user accounts, portfolios and records
+
 ## 5.0 Testing
+
+[Click here for Testing document]()
 
 ## 6.0 Devlopment life cycle
 
@@ -449,7 +583,7 @@ Additions:
 
 ### 6.45 README updates 1.0 UX
 
-README updates:
+README Updates:
 
 - Overview
 - Target audience
@@ -457,6 +591,22 @@ README updates:
 - How they are met
 - Goals of buisness
 - User stories
+
+### 6.46 Nav-bar icons, Footer updated links and README updates 2.0 Design Choices, 3.0 Features, 4.0 Tech used
+
+Additions:
+
+- Footer portfolio link
+- Nav bar icons desktop and tablet
+
+README Updates:
+
+- Fonts
+- Icons
+- Colors
+- Existing features
+- Features left to implement
+- Technologies used
 
 ## 7.0 Deployment
 
