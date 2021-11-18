@@ -15,13 +15,13 @@
                                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#portfolio-chart" aria-expanded="true" aria-controls="portfolio-chart">
                                     <div class="row">
                                         <div class="col-10 portfolio-title">
-                                            <h2>{{ username }}'s Portfolio</h2>
+                                            <h2>{{ username.capitalize() }}'s Portfolio</h2>
                                         </div>
                                     </div>
                                     
                                     <div class="row">
                                         <div class="col-6 portfolio-title">
-                                            <h3>$7318.09</h3>
+                                            <h3>$#####</h3>
                                         </div>
                                     </div>
                                         
@@ -33,7 +33,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-6 portfolio-title">
-                                            <h4>-$129.10 24h</h4>
+                                            <h4>$##### 24h</h4>
                                         </div>
 
                                         <div class="col-6 text-right">                                           
@@ -76,6 +76,13 @@
                                                                         
                                                                     <form method="POST" action="{{ url_for('add_record') }}">
                                                                         <div class="row justify-content-center">
+                                                                            <div class="col-12">
+                                                                                <p>To record your buy order select the correct coin and enter the quantity, price per token and date of the transaction</p>
+                                                                            </div>                                                                            
+                                                                        </div>
+                                                                            
+                                                                        <div class="row justify-content-center">
+                                                                        
                                                                             <div class="form-group">                                          
                                                                                 <select class="form-control record" id="coin_id" name="coin_id">
                                                                                     <option disabled selected>Select Coin</option>                                                                 
@@ -121,6 +128,12 @@
                                                                 <div class="tab-pane fade" id="sell" role="tabpanel" aria-labelledby="sell-tab">
 
                                                                     <form method="POST" action="{{ url_for('add_record') }}">
+                                                                        <div class="row justify-content-center">
+                                                                            <div class="col-12">
+                                                                                <p>To record your Sell order select the correct coin and enter the quantity, price per token and date of the transaction</p>
+                                                                            </div>                                                                            
+                                                                        </div>
+
                                                                         <div class="row justify-content-center">
                                                                             <div class="form-group">                                          
                                                                                 <select class="form-control record" id="coin_id" name="coin_id">
@@ -168,6 +181,12 @@
 
                                                                     
                                                                         <form method="POST" action="{{ url_for('add_record') }}">
+                                                                            <div class="row justify-content-center">
+                                                                                <div class="col-12">
+                                                                                    <p>To record your Staking rewards enter the coin, quantity and date. Earn passive income on your crypto</p>
+                                                                                </div>                                                                            
+                                                                            </div>
+                                                                            
                                                                             <div class="row justify-content-center">
                                                                                
                                                                                 <div class="form-group">                                          
@@ -243,7 +262,7 @@
                                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#portfolio-chart" aria-expanded="true" aria-controls="portfolio-chart">
                                     <div class="row">
                                         <div class="col-12 portfolio-title">
-                                            <h3>{{ username }}'s Portfolio</h3>
+                                            <h3>{{ username.capitalize() }}'s Portfolio</h3>
                                         </div>
                                     </div>
                                     
@@ -469,10 +488,7 @@
                     <table class="table table-striped portfolio-table">
                         <thead>
                             <tr>
-                                <th scope="col">TEST USER</th>
-                                <!-- DELETE THIS ONE -->
                                 <th scope="col">Name</th>
-                                <!-- Mongo DB Name -->
                                 <th scope="col">Price</th>
                                 <!-- CoinMarketCap listing latest crypto current price -->
                                 <th scope="col">24h %</th>
@@ -491,8 +507,7 @@
                             {% for record in portfolios %}
                                 {% for obj in prices %}
                                     <tr>
-                                        <td>{{ record.username }}</td>
-                                        <td>{{ record.coin_id }}</td>
+                                        <td>{{ record.coin_id}}</td>
                                         <td>{{ obj.quote.USD.price }}</td>
                                         <td>{{ obj.quote.USD.percent_change_24h }}</td>
                                         <td>{{ record.holdings}}</td>
@@ -631,6 +646,37 @@
                                                             <button type="button" class="user-button" data-dismiss="modal">Close</button>
                                                             <button type="button" class="user-button">Save changes</button>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="action-button" data-toggle="modal" data-target="#delete-coin">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
+                                            
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="delete-coin" tabindex="-1" aria-labelledby="delete-coin" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="delete-coin">Delete all records</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>
+                                                                Are you sure you want to delete all records of this coin?
+                                                                <br>
+                                                                This action cannot be undone.
+                                                            </p>
+                                                        </div>
+                                                        <form method="POST" action="{{ url_for('delete_record', record_id=record._id) }}">
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="user-button" data-dismiss="modal">Cancel</button>
+                                                                <button type="submit" class="user-button">Yes delete</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

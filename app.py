@@ -57,7 +57,10 @@ def portfolio():
     # Displays the users record history
 
     if session["user"] == username:
-        portfolios = mongo.db.portfolios.find({"username": session["user"], "id": {}})
+        user_portfolio_display = mongo.db.portfolios.find_one({"username": session["user"]})
+        _id = user_portfolio_display["_id"]
+        portfolios = user_portfolio_display["id"]
+        # ANOTHER PROBLEM IF USER DOESN'T HAVE ACCOUNT IT DOESN'T WORK
     # Displays the users portfolio
     
     for price in prices:
@@ -175,19 +178,23 @@ def add_record():
         coin_id = request.form.get("coin_id")
         coin_id_exists = False
         coin_id_object = {}
-        get_coins = mongo.db.portfolios.find(
+        coin_id_object_position = 0
+        # Finds username that matches the current users account
+        user_portfolio_contents = mongo.db.portfolios.find_one(
             {"username": session["user"]}
         )
-        filter = {"coin_id": coin_id}
         # Finds all of the portfolios and matches the username to the user
-
-        for get_coin in get_coins:
-            for token in get_coin.get("id"):
+        for get_coin in user_portfolio_contents:
+            for position, token in enumerate(get_coin.get("id")):
                 # Loops through the array for the "token" that matches the coin_id
                 if token.get("coin_id") == coin_id:
+                    # If there is a match my_portfolios fills crypto_id_object with the data
                     coin_id_exists = True
                     coin_id_object = token
-                    # If there is a match my_portfolios fills crypto_id_object with the data
+                    coin_id_object_position = position
+                    break
+            if coin_id_exists:
+                break
 
         records = {
             "username": session["user"],
@@ -200,14 +207,24 @@ def add_record():
             "total": float(total)
         }
         mongo.db.cryptos.insert_one(records)
-        
-        no_portfolio = None
-        find_portfolio = mongo.db.portfolios.find_one(
-            {"username": session["user"]})["username"]
-         #   Finds username that matches the current users account
 
-        if find_portfolio != username or find_portfolio == no_portfolio and coin_id_exists == False:
-            
+        all_contents = mongo.db.portfolios.find()
+        print("all_contents")
+        print("-------")
+        print(all_contents)
+        for item in all_contents:
+            print(item)
+
+        # default found_portfolio_user = None
+        find_portfolio_user = None
+        # If the portfolio exists, get username for comparison
+        if user_portfolio_contents is not None:
+            find_portfolio_user = mongo.db.portfolios.find_one(
+                {"username": session["user"]}
+            )["username"]
+
+        # If the portfolio can't be found, then create it
+        if user_portfolio_contents is None:
             my_portfolios = {
                 "username": session["user"],
                 "id": [{
@@ -218,61 +235,66 @@ def add_record():
                     "profit_loss": profit_loss
                 }]
             }
-            mongo.db.portfolios.insert_one(my_portfolios)
-            # If the username and coin_id don't match any documents then it creates a new one
-        
-        elif find_portfolio == username and coin_id_exists == False:
-            my_portfolios = {
-                {
+            mongo.db.portfolios.insert_one(my_portfolios)  # WORKS
+
+        # If the username matches a document but is the first transaction of 
+        # the coin it adds a new instance in the array
+        elif find_portfolio_user == username and coin_id_exists == False:
+            # get object _id
+            _id = user_portfolio_contents["_id"]
+            # Get portfolios (called by id) - this is a list
+            portfolio_contents = user_portfolio_contents["id"]
+            portfolio_contents.append({
                     "coin_id": coin_id,
                     "holdings": quantity,
                     "value": value,
                     "grand_total": total,
                     "profit_loss": profit_loss
-                }
-            }
-            mongo.db.portfolios.update(filter, {"$push", {"id": my_portfolios}})
-            # NEED TO FIGURE OUT HOW TO ADD NEW ARRAY 
-            # If the username matches a document but is the first transaction of the coin it adds a new instance in the array
+            })
+            mongo.db.portfolios.update({'_id': _id}, {"$set": {"id": portfolio_contents}})  # WORKS
+            
+        # If both the username and the coin_id make a match then the new data is updated with the old records
+        elif find_portfolio_user == username and coin_id_exists == True:
+            # get object _id
+            _id = user_portfolio_contents["_id"]
+            # Get portfolios (called by id) - this is a list
+            portfolio_contents = user_portfolio_contents["id"]
 
-        elif find_portfolio == username and coin_id_exists == True:
-
+            # Calculate new values
             updated_holdings = float(quantity) + float(coin_id_object.get("holdings"))
             updated_value = float(price) * float(coin_id_object.get("holdings"))
             # Need to figure out how to get price
             updated_total = float(total) + float(coin_id_object.get("grand_total"))
             updated_profit = float(coin_id_object.get("value")) - float(coin_id_object.get("grand_total"))
-            # If both the username and the coin_id make a match then the new data is updated with the old records
-
-            if type == "Buy" or type == "Staking": 
-                my_portfolios = {
-                    "id": [{
-                        "coin_id": coin_id,
-                        "holdings": updated_holdings,
-                        "value": updated_value,
-                        "grand_total": updated_total,
-                        "profit_loss": updated_profit
-                    }]
-                }
-                mongo.db.portfolios.update_one(filter, {"$set", {"coin_id": my_portfolios}})
-                # Buy and stake orders update the the holdings and grand_total by adding the users new order to the records
             
+            # Buy and stake orders update the the holdings and grand_total by adding the users new order to the records
+            if type in ["Buy", "Staking"]:
+                # Get portfolios (called by id) - this is a 
+                # list - update only coin specific item
+                portfolio_contents[coin_id_object_position] = {
+                    "coin_id": coin_id,
+                    "holdings": updated_holdings,
+                    "value": updated_value,
+                    "grand_total": updated_total,
+                    "profit_loss": updated_profit
+                }
+                mongo.db.portfolios.update({'_id': _id}, {"$set": {"id": portfolio_contents}})
+                
+            # Sell orders subtract the holdings from quantity and the total invested by the returns
             elif type == "Sell":
-
                 sell_holdings = float(coin_id_object.get("holdings")) - float(quantity)
                 sell_total = float(coin_id_object.get("grand_total")) - float(coin_id_object.get("value"))
-
-                my_portfolios = {
-                    "id": [{
-                        "coin_id": coin_id,
-                        "holdings": sell_holdings,
-                        "value": updated_value,
-                        "grand_total": sell_total,
-                        "profit_loss": updated_profit
-                    }]
+                # Get portfolios (called by id) - this is a 
+                # list - update only coin specific item
+                portfolio_contents[coin_id_object_position] = {
+                    "coin_id": coin_id,
+                    "holdings": sell_holdings,
+                    "value": updated_value,
+                    "grand_total": sell_total,
+                    "profit_loss": updated_profit
                 }
-                mongo.db.portfolios.update_one(filter, {"$set", {"coin_id": my_portfolios}})
-                # Sell orders subtract the holdings from quantity and the total invested by the returns
+                mongo.db.portfolios.update({'_id': _id}, {"$set": {"id": portfolio_contents}})
+                
 
         flash("Crypto Successfuly Added")
         return redirect(url_for("portfolio"))

@@ -172,41 +172,75 @@ Delete Modal Universal wireframe:
 
 ### 2.5 Mockups
 
-[Mockup pdf]()
+[Mockup pdf](static/mockups/)
 
 Home Desktop mockup:
 
+![](static/mockups/.png)
+
 Home Tablet mockup:
+
+![](static/mockups/.png)
 
 Home Mobile mockup:
 
+![](static/mockups/.png)
+
 Portfolio Desktop mockup:
+
+![](static/mockups/.png)
 
 Portfolio Tablet mockup:
 
+![](static/mockups/.png)
+
 Portfolio Mobile mockup:
+
+![](static/mockups/.png)
 
 Sign up Desktop mockup:
 
+![](static/mockups/.png)
+
 Sign up Tablet mockup:
+
+![](static/mockups/.png)
 
 Sign up Mobile mockup:
 
+![](static/mockups/.png)
+
 Log in Desktop mockup:
+
+![](static/mockups/.png)
 
 Log in Tablet mockup:
 
+![](static/mockups/.png)
+
 Log in Mobile mockup:
+
+![](static/mockups/.png)
 
 Transaction Modal Universal wireframe:
 
+![](static/mockups/.png)
+
 Edit Modal Universal wireframe:
+
+![](static/mockups/.png)
 
 Record Modal Desktop wireframe:
 
+![](static/mockups/.png)
+
 Record Modal Mobile wireframe:
 
+![](static/mockups/.png)
+
 Delete Modal Universal wireframe:
+
+![](static/mockups/.png)
 
 ## 3.0 Features
 
@@ -273,7 +307,7 @@ CoinMarketCap API is used to get the latest listings, price, price changes, mark
 
 ## 5.0 Testing
 
-[Click here for Testing document]()
+[Click here for Testing document](testing.md)
 
 ## 6.0 Devlopment life cycle
 
@@ -685,6 +719,7 @@ Test file Updates:
 
 Additions:
 
+- Wireframe folder
 - Wireframe pdf
 - home-desktop
 - home-tablet
@@ -703,6 +738,16 @@ Additions:
 - record-desktop
 - record-mobile
 - delete-universal
+
+### 6.51 Mockup file, updated flash messages, delete all tokens, text for transaction types 
+
+Additions:
+
+- Mockups folder
+- Updated the flash messages
+- Added Delete all button to portfolio page
+- Changes to app.py portfolio function
+- Added text giving small explanation on transactions
 
 ## 7.0 Deployment
 

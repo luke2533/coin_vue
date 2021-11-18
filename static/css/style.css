@@ -12,7 +12,14 @@ h1{
 }
 
 .flash{
-    background-color: aqua;
+    background-color: #FFAC5E;
+    color: black;
+    text-align: center;
+    padding: 3px;
+    margin-top: 10px;
+    box-shadow: 1px 1px 1px black;
+    border: 1px solid black;
+    max-width: 300px;
 }
 
 /* Univesal */
