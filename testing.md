@@ -9,6 +9,7 @@
 | HTML W3C validator | All pages pass the validator |  |
 | CSS W3C validator | All pages pass the validator |  |
 | JS JSHint validator | All pages pass the validator |  | 
+| PEP8 | | |
 
 ## 5.2 Nav-bar
 

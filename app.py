@@ -56,19 +56,40 @@ def portfolio():
         user_record = mongo.db.cryptos.find({"username": session["user"]}).sort("date", -1)
     # Displays the users record history
 
+    portfolios = []
+
     if session["user"] == username:
         user_portfolio_display = mongo.db.portfolios.find_one({"username": session["user"]})
-        _id = user_portfolio_display["_id"]
-        portfolios = user_portfolio_display["id"]
+        if user_portfolio_display is not None:
+            _id = user_portfolio_display["_id"]
+            portfolios = user_portfolio_display["id"]
         # ANOTHER PROBLEM IF USER DOESN'T HAVE ACCOUNT IT DOESN'T WORK
     # Displays the users portfolio
+    
+    # if session["user"] == username:
+    #     user_portfolio_total = mongo.db.portfolios.find_one({"username": session["user"]})
+    #     for get_total in user_portfolio_total:
+    #         get_id = get_total.get("id")
+
+    #         for total in get_id:
+    #             coin_value = float(total.get("value"))
+    #             coin_profit = float(total.get("profit_loss"))
+
+    #             total_value = coin_value + coin_value
+    #             total_profit = coin_profit + coin_profit
+    # Displays the users portfolios total value and its profit or loss
+
     
     for price in prices:
         price["quote"]["USD"]["price"] = "$" + "{:.4f}".format(price["quote"]["USD"]["price"])
         price["quote"]["USD"]["percent_change_24h"] = "{}%".format(price["quote"]["USD"]["percent_change_24h"])
+        # price = price["quote"]["USD"]["price"]
+        # price_change = price["quote"]["USD"]["percent_change_24h"]
 
     if session["user"]:
-        return render_template("portfolio.html", username=username, names=names, prices=prices, record=record, user_record=user_record, delete=delete, portfolios=portfolios)
+        return render_template("portfolio.html", username=username, 
+            names=names, prices=prices, record=record, user_record=user_record, delete=delete, portfolios=portfolios)
+            #total_value=total_value, total_profit=total_profit, delete_all=delete_all, portfolios=portfolios
 
 
 
@@ -78,7 +99,7 @@ def signup():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-    
+  
         if existing_user:
             flash("Username already exisits")
             return redirect(url_for("signup"))
@@ -183,9 +204,11 @@ def add_record():
         user_portfolio_contents = mongo.db.portfolios.find_one(
             {"username": session["user"]}
         )
+        print(user_portfolio_contents)
         # Finds all of the portfolios and matches the username to the user
-        for get_coin in user_portfolio_contents:
-            for position, token in enumerate(get_coin.get("id")):
+
+        if user_portfolio_contents is not None:
+            for position, token in enumerate(user_portfolio_contents.get("id")):
                 # Loops through the array for the "token" that matches the coin_id
                 if token.get("coin_id") == coin_id:
                     # If there is a match my_portfolios fills crypto_id_object with the data
@@ -193,8 +216,7 @@ def add_record():
                     coin_id_object = token
                     coin_id_object_position = position
                     break
-            if coin_id_exists:
-                break
+
 
         records = {
             "username": session["user"],
@@ -284,7 +306,7 @@ def add_record():
             elif type == "Sell":
                 sell_holdings = float(coin_id_object.get("holdings")) - float(quantity)
                 sell_total = float(coin_id_object.get("grand_total")) - float(coin_id_object.get("value"))
-                # Get portfolios (called by id) - this is a 
+                # Get portfolios (called by id) - this is a
                 # list - update only coin specific item
                 portfolio_contents[coin_id_object_position] = {
                     "coin_id": coin_id,
@@ -317,22 +339,18 @@ def get_record():
 def edit_record(record_id):
     if request.method == "POST":
 
-        coin_id_example = "Bitcoin"
         quantity_edit = request.form.get("quantity_edit")
         per_coin_edit = request.form.get("per_coin_edit")
         total_edit = float(quantity_edit) + float(per_coin_edit)
 
         update_record = {
-            "username": session["user"],
-            "type": type,
-            "coin_id": coin_id_example,
             "quantity": float(quantity_edit),
             "per_coin": float(per_coin_edit),
             "date": request.form.get("date_edit"),
             "notes": request.form.get("notes_edit"),
             "total": float(total_edit)
         }
-        mongo.db.cryptos.update({"_id": ObjectId(record_id)}, update_record)
+        mongo.db.cryptos.update({"_id": ObjectId(record_id)}, {"$set": {"id": update_record}})
         flash("Record Succesfully Updated")
     
     record = mongo.db.cryptos.find_one({"_id": ObjectId(record_id)})
@@ -351,6 +369,16 @@ def delete_record(record_id):
 
     delete = mongo.db.cryptos.find_one({"_id": ObjectId(record_id)})
     return render_template("portfolio.html", delete=delete)
+
+
+@app.route("/delete_all_coin/<record_id>", methods=["GET", "POST"])
+def delete_all_coin():
+    if request.method == "POST":
+
+        mongo.db.portfolios.delete_one({"_id": ObjectId(record_id)}, {"id": delete_all})
+
+    delete_all = mongo.db.portfolios.delete_one({"_id": ObjectId(record_id)})
+    return render_template("portfolio.html", delete_all=delete_all)
 
 
 if __name__ == "__main__":

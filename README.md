@@ -222,23 +222,23 @@ Log in Mobile mockup:
 
 ![](static/mockups/.png)
 
-Transaction Modal Universal wireframe:
+Transaction Modal Universal mockup:
 
 ![](static/mockups/.png)
 
-Edit Modal Universal wireframe:
+Edit Modal Universal mockup:
 
 ![](static/mockups/.png)
 
-Record Modal Desktop wireframe:
+Record Modal Desktop mockup:
 
 ![](static/mockups/.png)
 
-Record Modal Mobile wireframe:
+Record Modal Mobile mockup:
 
 ![](static/mockups/.png)
 
-Delete Modal Universal wireframe:
+Delete Modal Universal mockup:
 
 ![](static/mockups/.png)
 
@@ -758,6 +758,12 @@ Additions:
 - Changes to Delete record modile desktop and mobile
 - Changes to Delete All record modile desktop and mobile
 
+### 6.53
+
+Additions:
+
+- 
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
@@ -772,7 +778,7 @@ To devlop this project these steps where taken:
 4. Create .gitignore file to add files that should't be commited to GitHub
 5. Using GitPods terminal add, commit and push files to GitHub
 
-### 7.2 GitHub page deployment
+### 7.2 GitHub pages deployment
 
 To upload the project to GitHub pages these steps where taken:
 

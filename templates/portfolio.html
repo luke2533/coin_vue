@@ -21,7 +21,7 @@
                                     
                                     <div class="row">
                                         <div class="col-6 portfolio-title">
-                                            <h3>$#####</h3>
+                                            <h3>${{ total_value }}</h3>
                                         </div>
                                     </div>
                                         
@@ -33,7 +33,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-6 portfolio-title">
-                                            <h4>$##### 24h</h4>
+                                            <h4>${{ total_profit }} 24h</h4>
                                         </div>
 
                                         <div class="col-6 text-right">                                           
@@ -676,7 +676,7 @@
                                                                 </p>
                                                             </div>   
                                                         </div>
-                                                        <form method="POST" action="{{ url_for('delete_record', record_id=record._id) }}">
+                                                        <form method="POST" action="{{ url_for('delete_all_coin', record_id=record._id) }}">
                                                             <div class="modal-footer">
                                                                 <button type="button" class="user-button" data-dismiss="modal">Cancel</button>
                                                                 <button type="submit" class="user-button">Yes delete</button>
@@ -891,7 +891,7 @@
                                                                 </p>
                                                             </div>   
                                                         </div>
-                                                        <form method="POST" action="{{ url_for('delete_record', record_id=record._id) }}">
+                                                        <form method="POST" action="{{ url_for('delete_all_coin', record_id=record._id) }}">
                                                             <div class="modal-footer">
                                                                 <button type="button" class="user-button" data-dismiss="modal">Cancel</button>
                                                                 <button type="submit" class="user-button">Yes delete</button>
