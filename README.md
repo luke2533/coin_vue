@@ -749,6 +749,15 @@ Additions:
 - Changes to app.py portfolio function
 - Added text giving small explanation on transactions
 
+### 6.52 Transaction, Edit and Delete modals desktop and mobile support
+
+Additions:
+
+- Changes to transaction modile desktop and mobile
+- Changes to Edit modile desktop and mobile
+- Changes to Delete record modile desktop and mobile
+- Changes to Delete All record modile desktop and mobile
+
 ## 7.0 Deployment
 
 ### 7.1 Local deployment
