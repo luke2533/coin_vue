@@ -253,7 +253,6 @@ Delete Modal Universal mockup:
 - Buy records - Buy transaction record for new purchases
 - Sell records - Sell transaction to keep track of profits
 - Staking rewards records - Rewards from passive income coins
-- ChartJS portfolio chart - Chart to track and visualize portfolio history
 - Edit records - Change pre existing records
 - Delete records - Permanently remove records
 - Updated portfolio performance - Updates changes in value when user reloads page
@@ -266,6 +265,7 @@ Delete Modal Universal mockup:
 - Change password - Users could change their password if they forgot or wanted to make it more secure
 - Search bar for assets - Search bar to better filter down cryptocurrencies
 - Crypto info page - Pages for each crypto with further information on them
+- ChartJS portfolio chart - Chart to track and visualize portfolio history
 
 ## 4.0 Technologies used
 
@@ -758,11 +758,18 @@ Additions:
 - Changes to Delete record modile desktop and mobile
 - Changes to Delete All record modile desktop and mobile
 
-### 6.53
+### 6.53 Portfolio working and displays
 
 Additions:
 
-- 
+- Adding transactions to portfolio works
+- Updated records for portfolios
+
+### 6.54
+
+Additions:
+
+
 
 ## 7.0 Deployment
 
@@ -778,18 +785,7 @@ To devlop this project these steps where taken:
 4. Create .gitignore file to add files that should't be commited to GitHub
 5. Using GitPods terminal add, commit and push files to GitHub
 
-### 7.2 GitHub pages deployment
-
-To upload the project to GitHub pages these steps where taken:
-
-1. Go to coin_vue repository settings
-2. Scroll down to GitHub pages section
-3. Select the branch to be uploaded
-4. Select the folder and click save
-
-The project is then published to GitHub pages generating a link to the live website
-
-### 7.3 Heroku deployment
+### 7.2 Heroku deployment
 
 1. From Heroku's website sign in and click "New", "Create new app"
 2. Enter a app name "coin-vue" and region then click "Create app"
